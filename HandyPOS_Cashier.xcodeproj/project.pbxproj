@@ -1,0 +1,324 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		677370921B6AE99F00E0F020 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 677370911B6AE99F00E0F020 /* main.m */; };
+		677370951B6AE99F00E0F020 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 677370941B6AE99F00E0F020 /* AppDelegate.m */; };
+		677370981B6AE99F00E0F020 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 677370971B6AE99F00E0F020 /* ViewController.m */; };
+		6773709B1B6AE99F00E0F020 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 677370991B6AE99F00E0F020 /* Main.storyboard */; };
+		6773709E1B6AE99F00E0F020 /* HandyPOS_Cashier.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6773709C1B6AE99F00E0F020 /* HandyPOS_Cashier.xcdatamodeld */; };
+		677370A01B6AE99F00E0F020 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6773709F1B6AE99F00E0F020 /* Assets.xcassets */; };
+		677370A31B6AE99F00E0F020 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 677370A11B6AE99F00E0F020 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6773708D1B6AE99F00E0F020 /* HandyPOS_Cashier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HandyPOS_Cashier.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		677370911B6AE99F00E0F020 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		677370931B6AE99F00E0F020 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		677370941B6AE99F00E0F020 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		677370961B6AE99F00E0F020 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		677370971B6AE99F00E0F020 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		6773709A1B6AE99F00E0F020 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6773709D1B6AE99F00E0F020 /* HandyPOS_Cashier.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HandyPOS_Cashier.xcdatamodel; sourceTree = "<group>"; };
+		6773709F1B6AE99F00E0F020 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		677370A21B6AE99F00E0F020 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		677370A41B6AE99F00E0F020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6773708A1B6AE99F00E0F020 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		677370841B6AE99F00E0F020 = {
+			isa = PBXGroup;
+			children = (
+				6773708F1B6AE99F00E0F020 /* HandyPOS_Cashier */,
+				6773708E1B6AE99F00E0F020 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6773708E1B6AE99F00E0F020 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6773708D1B6AE99F00E0F020 /* HandyPOS_Cashier.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6773708F1B6AE99F00E0F020 /* HandyPOS_Cashier */ = {
+			isa = PBXGroup;
+			children = (
+				677370931B6AE99F00E0F020 /* AppDelegate.h */,
+				677370941B6AE99F00E0F020 /* AppDelegate.m */,
+				677370961B6AE99F00E0F020 /* ViewController.h */,
+				677370971B6AE99F00E0F020 /* ViewController.m */,
+				677370991B6AE99F00E0F020 /* Main.storyboard */,
+				6773709F1B6AE99F00E0F020 /* Assets.xcassets */,
+				677370A11B6AE99F00E0F020 /* LaunchScreen.storyboard */,
+				677370A41B6AE99F00E0F020 /* Info.plist */,
+				6773709C1B6AE99F00E0F020 /* HandyPOS_Cashier.xcdatamodeld */,
+				677370901B6AE99F00E0F020 /* Supporting Files */,
+			);
+			path = HandyPOS_Cashier;
+			sourceTree = "<group>";
+		};
+		677370901B6AE99F00E0F020 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				677370911B6AE99F00E0F020 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6773708C1B6AE99F00E0F020 /* HandyPOS_Cashier */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 677370A71B6AE99F00E0F020 /* Build configuration list for PBXNativeTarget "HandyPOS_Cashier" */;
+			buildPhases = (
+				677370891B6AE99F00E0F020 /* Sources */,
+				6773708A1B6AE99F00E0F020 /* Frameworks */,
+				6773708B1B6AE99F00E0F020 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HandyPOS_Cashier;
+			productName = HandyPOS_Cashier;
+			productReference = 6773708D1B6AE99F00E0F020 /* HandyPOS_Cashier.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		677370851B6AE99F00E0F020 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "小泉 丈太";
+				TargetAttributes = {
+					6773708C1B6AE99F00E0F020 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+				};
+			};
+			buildConfigurationList = 677370881B6AE99F00E0F020 /* Build configuration list for PBXProject "HandyPOS_Cashier" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 677370841B6AE99F00E0F020;
+			productRefGroup = 6773708E1B6AE99F00E0F020 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6773708C1B6AE99F00E0F020 /* HandyPOS_Cashier */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6773708B1B6AE99F00E0F020 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				677370A31B6AE99F00E0F020 /* LaunchScreen.storyboard in Resources */,
+				677370A01B6AE99F00E0F020 /* Assets.xcassets in Resources */,
+				6773709B1B6AE99F00E0F020 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		677370891B6AE99F00E0F020 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				677370981B6AE99F00E0F020 /* ViewController.m in Sources */,
+				6773709E1B6AE99F00E0F020 /* HandyPOS_Cashier.xcdatamodeld in Sources */,
+				677370951B6AE99F00E0F020 /* AppDelegate.m in Sources */,
+				677370921B6AE99F00E0F020 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		677370991B6AE99F00E0F020 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6773709A1B6AE99F00E0F020 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		677370A11B6AE99F00E0F020 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				677370A21B6AE99F00E0F020 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		677370A51B6AE99F00E0F020 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		677370A61B6AE99F00E0F020 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		677370A81B6AE99F00E0F020 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = HandyPOS_Cashier/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "POSCO.HandyPOS-Cashier";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		677370A91B6AE99F00E0F020 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = HandyPOS_Cashier/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "POSCO.HandyPOS-Cashier";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		677370881B6AE99F00E0F020 /* Build configuration list for PBXProject "HandyPOS_Cashier" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				677370A51B6AE99F00E0F020 /* Debug */,
+				677370A61B6AE99F00E0F020 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		677370A71B6AE99F00E0F020 /* Build configuration list for PBXNativeTarget "HandyPOS_Cashier" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				677370A81B6AE99F00E0F020 /* Debug */,
+				677370A91B6AE99F00E0F020 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6773709C1B6AE99F00E0F020 /* HandyPOS_Cashier.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6773709D1B6AE99F00E0F020 /* HandyPOS_Cashier.xcdatamodel */,
+			);
+			currentVersion = 6773709D1B6AE99F00E0F020 /* HandyPOS_Cashier.xcdatamodel */;
+			path = HandyPOS_Cashier.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 677370851B6AE99F00E0F020 /* Project object */;
+}

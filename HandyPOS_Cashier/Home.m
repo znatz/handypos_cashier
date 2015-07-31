@@ -102,6 +102,13 @@ NSMutableArray * receipt ;
     return result;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row > (receipt.count + 1)) {
+        return 0.0;
+    }
+    return 44.0;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
@@ -121,7 +128,7 @@ NSMutableArray * receipt ;
     }
     
     // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ last line
-    if (indexPath.row == receipt.count + 1) {
+    if (indexPath.row == (receipt.count + 1)) {
         
         UIButton * back     = [UIButton buttonWithType:UIButtonTypeCustom];
         [back addTarget:self action:@selector(goback:) forControlEvents:UIControlEventTouchUpInside];

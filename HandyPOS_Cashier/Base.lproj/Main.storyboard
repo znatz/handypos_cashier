@@ -44,8 +44,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ReJ-eM-FXy" userLabel="receiptContents">
-                                <rect key="frame" x="0.0" y="123" width="240" height="133"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ReJ-eM-FXy" userLabel="receiptContents">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="256"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
@@ -55,9 +55,9 @@
                             <constraint firstItem="8az-hQ-oZf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="5" id="Icr-lT-xMa"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ReJ-eM-FXy" secondAttribute="bottom" constant="30" id="Ojt-dX-Mvs"/>
                             <constraint firstItem="0m4-Oz-1VR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="5" id="VMJ-9e-ajs"/>
+                            <constraint firstItem="ReJ-eM-FXy" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="44" id="bu4-fb-nXR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0m4-Oz-1VR" secondAttribute="trailing" constant="5" id="eUb-30-Jw7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ReJ-eM-FXy" secondAttribute="trailing" constant="5" id="g7z-8S-ue1"/>
-                            <constraint firstItem="ReJ-eM-FXy" firstAttribute="top" secondItem="0m4-Oz-1VR" secondAttribute="bottom" id="sPD-aE-WjH"/>
                             <constraint firstItem="ReJ-eM-FXy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="5" id="uqj-ah-gUU"/>
                         </constraints>
                     </view>

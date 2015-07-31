@@ -8,6 +8,7 @@
 
 #import "Home.h"
 #import "NetworkManager.h"
+#import "DBHelper.h"
 
 @interface Home () <APNumberPadDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *receiptNO;
@@ -18,6 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [NetworkManager fetchAllDB];
     _receiptNO.inputView = ({
         APNumberPad *numberPad = [APNumberPad numberPadWithDelegate:self];
         [numberPad.leftFunctionButton setTitle:@"検索" forState:UIControlStateNormal];
@@ -42,7 +44,9 @@
  #pragma mark - APNumberPadDelegate
  
  - (void)numberPad:(APNumberPad *)numberPad functionButtonAction:(UIButton *)functionButton textInput:(UIResponder<UITextInput> *)textInput {
-     [textInput insertText:[NSString stringWithFormat:@"%ld", (long)functionButton.tag]];
-//     [NetworkManager fetchAllDB];
+    [textInput insertText:[NSString stringWithFormat:@"%ld", (long)functionButton.tag]];
+     
+    NSMutableArray * receipt = [DBHelper getReceiptByReceiptNo:@"45"];
+    NSLog(@"count of %ld", receipt.count);
  }
 @end

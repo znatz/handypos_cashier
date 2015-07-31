@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		43A50574EAF22DAAF9848441 /* libPods-HandyPOS_Cashier.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 003BB8F8E758F3C826F4195A /* libPods-HandyPOS_Cashier.a */; };
+		67307FC41B6B13A800B9ED26 /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 67307FC31B6B13A800B9ED26 /* DBHelper.m */; };
 		673482851B6B052C000D3DE5 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 673482841B6B052C000D3DE5 /* NetworkManager.m */; };
 		677370921B6AE99F00E0F020 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 677370911B6AE99F00E0F020 /* main.m */; };
 		677370951B6AE99F00E0F020 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 677370941B6AE99F00E0F020 /* AppDelegate.m */; };
@@ -16,12 +17,15 @@
 		6773709E1B6AE99F00E0F020 /* HandyPOS_Cashier.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6773709C1B6AE99F00E0F020 /* HandyPOS_Cashier.xcdatamodeld */; };
 		677370A01B6AE99F00E0F020 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6773709F1B6AE99F00E0F020 /* Assets.xcassets */; };
 		677370A31B6AE99F00E0F020 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 677370A11B6AE99F00E0F020 /* LaunchScreen.storyboard */; };
+		678047F11B6B34D6001C1A21 /* Receipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 678047F01B6B34D6001C1A21 /* Receipt.m */; };
 		67E664C31B6B026700BCBD9A /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E664C21B6B026700BCBD9A /* ExternalAccessory.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		003BB8F8E758F3C826F4195A /* libPods-HandyPOS_Cashier.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HandyPOS_Cashier.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AE6E57917E052ED17720F4B /* Pods-HandyPOS_Cashier.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HandyPOS_Cashier.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HandyPOS_Cashier/Pods-HandyPOS_Cashier.debug.xcconfig"; sourceTree = "<group>"; };
+		67307FC21B6B13A800B9ED26 /* DBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBHelper.h; sourceTree = "<group>"; };
+		67307FC31B6B13A800B9ED26 /* DBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHelper.m; sourceTree = "<group>"; };
 		673482831B6B052C000D3DE5 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		673482841B6B052C000D3DE5 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		6773708D1B6AE99F00E0F020 /* HandyPOS_Cashier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HandyPOS_Cashier.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,6 +39,8 @@
 		6773709F1B6AE99F00E0F020 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		677370A21B6AE99F00E0F020 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		677370A41B6AE99F00E0F020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		678047EF1B6B34D6001C1A21 /* Receipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Receipt.h; sourceTree = "<group>"; };
+		678047F01B6B34D6001C1A21 /* Receipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Receipt.m; sourceTree = "<group>"; };
 		67E664C21B6B026700BCBD9A /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		AB9760A341B71E67CB793568 /* Pods-HandyPOS_Cashier.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HandyPOS_Cashier.release.xcconfig"; path = "Pods/Target Support Files/Pods-HandyPOS_Cashier/Pods-HandyPOS_Cashier.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,6 +58,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		67307FC11B6B118E00B9ED26 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				67307FC21B6B13A800B9ED26 /* DBHelper.h */,
+				67307FC31B6B13A800B9ED26 /* DBHelper.m */,
+			);
+			name = DB;
+			sourceTree = "<group>";
+		};
 		673482821B6B04C5000D3DE5 /* Connection */ = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +97,8 @@
 		6773708F1B6AE99F00E0F020 /* HandyPOS_Cashier */ = {
 			isa = PBXGroup;
 			children = (
+				678047EE1B6B34B8001C1A21 /* Models */,
+				67307FC11B6B118E00B9ED26 /* DB */,
 				673482821B6B04C5000D3DE5 /* Connection */,
 				677370931B6AE99F00E0F020 /* AppDelegate.h */,
 				677370941B6AE99F00E0F020 /* AppDelegate.m */,
@@ -103,6 +120,15 @@
 				677370911B6AE99F00E0F020 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		678047EE1B6B34B8001C1A21 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				678047EF1B6B34D6001C1A21 /* Receipt.h */,
+				678047F01B6B34D6001C1A21 /* Receipt.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		AA7F862D6AC44805F09FED6F /* Frameworks */ = {
@@ -233,6 +259,8 @@
 				677370951B6AE99F00E0F020 /* AppDelegate.m in Sources */,
 				673482851B6B052C000D3DE5 /* NetworkManager.m in Sources */,
 				677370921B6AE99F00E0F020 /* main.m in Sources */,
+				678047F11B6B34D6001C1A21 /* Receipt.m in Sources */,
+				67307FC41B6B13A800B9ED26 /* DBHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

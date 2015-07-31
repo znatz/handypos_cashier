@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FMDB.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>NSString+Ruby.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>18C2C0BAB16EC910A147C4DEC5E2983B</key>
+		<key>1E61AB7D0A574E498D2DAAC905583D17</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>23D216C5C889EC4E52BB6E2D7D069859</key>
+		<key>2F3F996B04B75382ED090DE38A9010ED</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>84E5BF9A7EF13636FEB916ACB497B59D</key>
+		<key>439396B606ACE4120ABEC179802FDB22</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A5C975A7E973164C887030735195799E</key>
+		<key>765C7EF792321C356B879B6FFE9C0174</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>974C61F6E23E36E5E30030FBB28C6BD6</key>
 		<dict>
 			<key>primary</key>
 			<true/>

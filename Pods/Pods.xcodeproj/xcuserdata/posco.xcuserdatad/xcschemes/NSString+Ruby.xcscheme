@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2C5618588B2F14CC47040B45"
-               BuildableName = "libAPNumberPad.a"
-               BlueprintName = "APNumberPad"
+               BlueprintIdentifier = "D351F9E22F9937B2874204C7"
+               BuildableName = "libNSString+Ruby.a"
+               BlueprintName = "NSString+Ruby"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

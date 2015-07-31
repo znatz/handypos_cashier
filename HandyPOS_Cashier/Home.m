@@ -7,6 +7,7 @@
 //
 
 #import "Home.h"
+#import "NetworkManager.h"
 
 @interface Home () <APNumberPadDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *receiptNO;
@@ -41,5 +42,7 @@
  #pragma mark - APNumberPadDelegate
  
  - (void)numberPad:(APNumberPad *)numberPad functionButtonAction:(UIButton *)functionButton textInput:(UIResponder<UITextInput> *)textInput {
-     [textInput insertText:[NSString stringWithFormat:@"%ld", (long)functionButton.tag]];}
+     [textInput insertText:[NSString stringWithFormat:@"%ld", (long)functionButton.tag]];
+//     [NetworkManager fetchAllDB];
+ }
 @end

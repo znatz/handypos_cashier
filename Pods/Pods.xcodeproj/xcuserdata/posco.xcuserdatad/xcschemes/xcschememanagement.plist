@@ -4,7 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>APNumberPad.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>NSString+Ruby.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -17,12 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>CF882BC4C87B8E9EA9A14317B2F01140</key>
+		<key>18C2C0BAB16EC910A147C4DEC5E2983B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E257E998DA7A6A46776E313FAC5BE832</key>
+		<key>23D216C5C889EC4E52BB6E2D7D069859</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>84E5BF9A7EF13636FEB916ACB497B59D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A5C975A7E973164C887030735195799E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

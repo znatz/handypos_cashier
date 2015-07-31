@@ -182,6 +182,7 @@
 				TargetAttributes = {
 					6773708C1B6AE99F00E0F020 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = U9ZRHY277J;
 					};
 				};
 			};
@@ -373,6 +374,7 @@
 			baseConfigurationReference = 0AE6E57917E052ED17720F4B /* Pods-HandyPOS_Cashier.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = HandyPOS_Cashier/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -386,6 +388,7 @@
 			baseConfigurationReference = AB9760A341B71E67CB793568 /* Pods-HandyPOS_Cashier.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = HandyPOS_Cashier/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -64,6 +64,8 @@ NSMutableArray * receipt ;
              _tableNO.hidden    = YES;
              _receiptNO.hidden  = YES;
              _titleLabel.text   = @"レシート";
+             [_receiptNO resignFirstResponder];
+             [_tableNO resignFirstResponder];
          }
      } else {
          receipt = [DBHelper getReceiptByTableNo:_tableNO.text];
@@ -71,10 +73,11 @@ NSMutableArray * receipt ;
              _tableNO.hidden    = YES;
              _receiptNO.hidden  = YES;
              _titleLabel.text   = @"レシート";
+             [_receiptNO resignFirstResponder];
+             [_tableNO resignFirstResponder];
          }
      }
      count_of_receipt_line = receipt.count;
-     [self.receiptNO resignFirstResponder];
      self.receiptContents.hidden    = NO;
      [self.receiptContents reloadData];
      [textInput insertText:@"検索中・・・"];
@@ -95,7 +98,7 @@ NSMutableArray * receipt ;
         total += r.price * r.kosu;
     }
     NSString * result = [NSString stringWithFormat:@"合計：￥%d", total];
-    result = [result rightJustify:50 with:@" "];
+    result = [result rightJustify:30 with:@" "];
     return result;
 }
 
@@ -147,7 +150,7 @@ NSMutableArray * receipt ;
     cell.textLabel.text     = eachReceipt.goodsTitle;
     
     NSString * priceXcount  = [NSString stringWithFormat:@"¥%d X", eachReceipt.price];
-    priceXcount = [priceXcount rightJustify:80 with:@" "];
+    priceXcount = [priceXcount rightJustify:50 with:@" "];
     priceXcount = [NSString stringWithFormat:@"%@%d", priceXcount, eachReceipt.kosu];
     
     cell.detailTextLabel.text = priceXcount;

@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ViewController : UIViewController
+#import <APNumberPad/APNumberPad.h>
+@interface Home : UIViewController
 
 
 @end

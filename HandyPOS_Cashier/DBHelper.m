@@ -72,6 +72,31 @@
     return receipts;
 }
 
++(NSMutableArray *) getReceiptByTableNo : (NSString *) i {
+    
+    Receipt * r;
+    NSMutableArray * receipts = [[NSMutableArray alloc] init];
+    FMDatabase * db = [self getDBFromFile:DB_FILE];
+    FMResultSet * result;
+    
+    [db open];
+    result = [db executeQuery:@"SELECT * FROM DataFromIOs WHERE tableNO = ?", i ];
+    while ([result next]) {
+        r = [[Receipt alloc] initWithID : [result stringForColumn:@"id"]
+                                  tanto : [result stringForColumn:@"tanto"]
+                             goodsTitle : [result stringForColumn:@"goodsTitle"]
+                                   kosu : [[result stringForColumn:@"kosu"] intValue]
+                                   time : [result stringForColumn:@"time"]
+                              receiptNo : [result stringForColumn:@"receiptNo"]
+                                tableNO : [result stringForColumn:@"tableNO"] price:0];
+        [receipts addObject:[self setPriceOfReceipt:r]];
+    }
+    [db close];
+    return receipts;
+}
+
+
+
 
 +(Receipt *) setPriceOfReceipt : (Receipt *) r {
     FMDatabase * db = [self getDBFromFile:DB_FILE];

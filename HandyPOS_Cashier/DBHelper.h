@@ -13,4 +13,5 @@
 + (FMDatabase *) getDBFromFile : (NSString *) filename ;
 + (void) removeUnusedTalbesFromDB : (NSString *) dbfile forgiveTable : (NSString *) tablename ;
 + (NSMutableArray *) getReceiptByReceiptNo : (NSString *) i ;
++ (NSMutableArray *) getReceiptByTableNo : (NSString *) i ;
 @end

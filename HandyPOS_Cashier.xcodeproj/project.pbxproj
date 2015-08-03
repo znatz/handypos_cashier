@@ -11,6 +11,8 @@
 		67307FC41B6B13A800B9ED26 /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 67307FC31B6B13A800B9ED26 /* DBHelper.m */; };
 		673482851B6B052C000D3DE5 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 673482841B6B052C000D3DE5 /* NetworkManager.m */; };
 		676361111B6F22A70095071F /* PayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 676361101B6F22A70095071F /* PayController.m */; };
+		676361131B6F5B940095071F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 676361121B6F5B940095071F /* AudioToolbox.framework */; };
+		676361161B6F5CA80095071F /* click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 676361151B6F5CA80095071F /* click.wav */; };
 		677370921B6AE99F00E0F020 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 677370911B6AE99F00E0F020 /* main.m */; };
 		677370951B6AE99F00E0F020 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 677370941B6AE99F00E0F020 /* AppDelegate.m */; };
 		677370981B6AE99F00E0F020 /* Home.m in Sources */ = {isa = PBXBuildFile; fileRef = 677370971B6AE99F00E0F020 /* Home.m */; };
@@ -31,6 +33,8 @@
 		673482841B6B052C000D3DE5 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		6763610F1B6F22A70095071F /* PayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayController.h; sourceTree = "<group>"; };
 		676361101B6F22A70095071F /* PayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayController.m; sourceTree = "<group>"; };
+		676361121B6F5B940095071F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		676361151B6F5CA80095071F /* click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click.wav; sourceTree = "<group>"; };
 		6773708D1B6AE99F00E0F020 /* HandyPOS_Cashier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HandyPOS_Cashier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		677370911B6AE99F00E0F020 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		677370931B6AE99F00E0F020 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -53,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				676361131B6F5B940095071F /* AudioToolbox.framework in Frameworks */,
 				67E664C31B6B026700BCBD9A /* ExternalAccessory.framework in Frameworks */,
 				43A50574EAF22DAAF9848441 /* libPods-HandyPOS_Cashier.a in Frameworks */,
 			);
@@ -79,6 +84,14 @@
 			name = Connection;
 			sourceTree = "<group>";
 		};
+		676361141B6F5C940095071F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				676361151B6F5CA80095071F /* click.wav */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		677370841B6AE99F00E0F020 = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +113,7 @@
 		6773708F1B6AE99F00E0F020 /* HandyPOS_Cashier */ = {
 			isa = PBXGroup;
 			children = (
+				676361141B6F5C940095071F /* Resources */,
 				678047EE1B6B34B8001C1A21 /* Models */,
 				67307FC11B6B118E00B9ED26 /* DB */,
 				673482821B6B04C5000D3DE5 /* Connection */,
@@ -107,14 +121,14 @@
 				677370941B6AE99F00E0F020 /* AppDelegate.m */,
 				677370961B6AE99F00E0F020 /* Home.h */,
 				677370971B6AE99F00E0F020 /* Home.m */,
+				6763610F1B6F22A70095071F /* PayController.h */,
+				676361101B6F22A70095071F /* PayController.m */,
 				677370991B6AE99F00E0F020 /* Main.storyboard */,
 				6773709F1B6AE99F00E0F020 /* Assets.xcassets */,
 				677370A11B6AE99F00E0F020 /* LaunchScreen.storyboard */,
 				677370A41B6AE99F00E0F020 /* Info.plist */,
 				6773709C1B6AE99F00E0F020 /* HandyPOS_Cashier.xcdatamodeld */,
 				677370901B6AE99F00E0F020 /* Supporting Files */,
-				6763610F1B6F22A70095071F /* PayController.h */,
-				676361101B6F22A70095071F /* PayController.m */,
 			);
 			path = HandyPOS_Cashier;
 			sourceTree = "<group>";
@@ -139,6 +153,7 @@
 		AA7F862D6AC44805F09FED6F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				676361121B6F5B940095071F /* AudioToolbox.framework */,
 				67E664C21B6B026700BCBD9A /* ExternalAccessory.framework */,
 				003BB8F8E758F3C826F4195A /* libPods-HandyPOS_Cashier.a */,
 			);
@@ -217,6 +232,7 @@
 				677370A31B6AE99F00E0F020 /* LaunchScreen.storyboard in Resources */,
 				677370A01B6AE99F00E0F020 /* Assets.xcassets in Resources */,
 				6773709B1B6AE99F00E0F020 /* Main.storyboard in Resources */,
+				676361161B6F5CA80095071F /* click.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

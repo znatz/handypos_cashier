@@ -12,6 +12,8 @@
 #import "Receipt.h"
 #import "NSString+Ruby.h"
 #import "PayController.h"
+#import <FlatUIKit/FlatUIKit.h>
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface Home () <APNumberPadDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -21,6 +23,9 @@
 @end
 
 @implementation Home
+NSString * path;
+NSURL    * url;
+SystemSoundID home_soundID;
 
 NSInteger count_of_receipt_line;
 NSMutableArray * receipt ;
@@ -49,6 +54,11 @@ NSMutableArray * receipt ;
     _receiptContents.delegate   = self;
     _receiptContents.hidden     = YES;
     _titleLabel.text            = @"検索";
+    
+    /* Sound Setup */
+    path=[[NSBundle mainBundle]pathForResource:@"click" ofType:@"wav"];
+    url=[NSURL fileURLWithPath:path];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)url,&home_soundID);
     
 }
 
@@ -101,6 +111,9 @@ NSMutableArray * receipt ;
 
 /* "Back" Button Handler ----------------------*/
 -(IBAction) goback:(id)sender {
+    
+    AudioServicesPlaySystemSound(home_soundID);
+    
     _receiptContents.hidden = YES;
     _tableNO.hidden         = NO;
     _receiptNO.hidden       = NO;
@@ -114,6 +127,9 @@ NSMutableArray * receipt ;
 
 /* "Pay" Button Handler ------------------------*/
 -(IBAction) pay:(id)sender {
+    
+    AudioServicesPlaySystemSound(home_soundID);
+    
     PayController * payScene = [[self storyboard] instantiateViewControllerWithIdentifier:@"pay_scene"];
     payScene.receivable_amount = [self getRawTotalPriceFromReceipt:receipt];
     [self presentViewController:payScene animated:YES completion:nil];
@@ -137,7 +153,7 @@ NSMutableArray * receipt ;
 
 
 - (NSString *) getTotalPriceFromReceipt:(NSMutableArray *) rs {
-    NSString * result = [NSString stringWithFormat:@"合計：￥%d", [self getRawTotalPriceFromReceipt:rs]];
+    NSString * result = [NSString stringWithFormat:@"合計：%@", [self setPrice:[self getRawTotalPriceFromReceipt:rs]]];
     result = [result rightJustify:30 with:@" "];
     return result;
 }
@@ -176,20 +192,27 @@ NSMutableArray * receipt ;
     // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ last line
     if (indexPath.row == (receipt.count + 1)) {
         
-        
-        UIButton * back     = [UIButton buttonWithType:UIButtonTypeCustom];
-        [back addTarget:self action:@selector(goback:) forControlEvents:UIControlEventTouchUpInside];
+        FUIButton * back = [[FUIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 100.0f, 44.0f)];
+        back.buttonColor = [UIColor turquoiseColor];
+        back.shadowColor = [UIColor greenSeaColor];
+        back.shadowHeight= 3.0f;
+        back.titleLabel.font = [UIFont boldFlatFontOfSize:19];
+        [back setTitleColor:[UIColor cloudsColor] forState:UIControlStateNormal];
+        [back setTitleColor:[UIColor cloudsColor] forState:UIControlStateHighlighted];
         [back setTitle:@"戻る" forState:UIControlStateNormal];
-        [back setFrame:CGRectMake(12.0, 0.0, 80.0, 44.0)];
-        [back.titleLabel setFont:[UIFont boldSystemFontOfSize:21.0]];
-        [back setBackgroundColor:[UIColor yellowColor]];
+        [back addTarget:self action:@selector(goback:) forControlEvents:UIControlEventTouchUpInside];
         
-        UIButton * advanced = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        CGFloat parentWidth      = [self view].frame.size.width;
+        FUIButton * advanced     = [[FUIButton alloc] initWithFrame:CGRectMake(parentWidth - 130.0f, 0.0f, 100.0f, 44.0f)];
+        advanced.buttonColor     = [UIColor turquoiseColor];
+        advanced.shadowColor     = [UIColor greenSeaColor];
+        advanced.shadowHeight    = 3.0f;
+        advanced.titleLabel.font = [UIFont boldFlatFontOfSize:19];
+        [advanced setTitleColor:[UIColor cloudsColor] forState:UIControlStateNormal];
+        [advanced setTitleColor:[UIColor cloudsColor] forState:UIControlStateHighlighted];
+        [advanced setTitle:@"お支払い" forState:UIControlStateNormal];
         [advanced addTarget:self action:@selector(pay:) forControlEvents:UIControlEventTouchUpInside];
-        [advanced setTitle:@"支払い" forState:UIControlStateNormal];
-        [advanced setFrame:CGRectMake([self.view frame].size.width - 120.0, 0.0, 80.0, 44.0)];
-        [advanced.titleLabel setFont:[UIFont boldSystemFontOfSize:21.0]];
-        [advanced setBackgroundColor:[UIColor yellowColor]];
         
         [cell.contentView addSubview:back];
         [cell.contentView addSubview:advanced];
@@ -201,7 +224,7 @@ NSMutableArray * receipt ;
     Receipt * eachReceipt   = receipt[indexPath.row];
     cell.textLabel.text     = eachReceipt.goodsTitle;
     
-    NSString * priceXcount  = [NSString stringWithFormat:@"¥%d X", eachReceipt.price];
+    NSString * priceXcount  = [NSString stringWithFormat:@"%@ X", [self setPrice:eachReceipt.price]];
     priceXcount = [priceXcount rightJustify:50 with:@" "];
     priceXcount = [NSString stringWithFormat:@"%@%d", priceXcount, eachReceipt.kosu];
     
@@ -209,6 +232,14 @@ NSMutableArray * receipt ;
     return cell;
 }
 
+-(NSString *)setPrice : (int) p {
+    NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
+    [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"ja-JP"]];
+    [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    [formatter setCurrencySymbol:@"￥"];
+    NSString * result = [formatter stringFromNumber:[[NSNumber alloc] initWithInt:p]];
+    return result;
+}
 
 
 

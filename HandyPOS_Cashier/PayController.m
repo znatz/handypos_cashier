@@ -9,6 +9,7 @@
 #import "PayController.h"
 #import "Home.h"
 #import <FlatUIKit/FlatUIKit.h>
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface PayController ()
 @property (weak, nonatomic) IBOutlet UITextField *receivable;
@@ -17,23 +18,38 @@
 @end
 
 @implementation PayController
+
 int currentInput;
 int currentChanges;
+NSString * sound_path;
+NSURL    * sound_url;
+SystemSoundID soundID;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"%d", _receivable_amount);
     _receivable.text = [NSString stringWithFormat:@"%d",_receivable_amount];
     
+    /* Button Setup */
     [self appendButton];
+    
+    /* Sound Setup */
+    sound_path=[[NSBundle mainBundle]pathForResource:@"click" ofType:@"wav"];
+    sound_url=[NSURL fileURLWithPath:sound_path];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)sound_url,&soundID);
     
 }
 
 -(IBAction)submitButtonHandler:(id)sender {
+    
+    AudioServicesPlaySystemSound(soundID);
+    
     [self validation];
 }
 
 -(IBAction)numberButtonHandler:(id)sender {
+    
+    AudioServicesPlaySystemSound(soundID);
+    
     FUIButton * btn = (FUIButton *) sender;
     if (currentInput < 1000000) {
         if (btn.tag == 10) {
@@ -48,17 +64,26 @@ int currentChanges;
 }
 
 -(IBAction)changesButtonHandler:(id)sender {
+    
+    AudioServicesPlaySystemSound(soundID);
+    
     currentChanges = currentInput - self.receivable_amount;
     [self updateChanges];
 }
 
 
 -(IBAction)clearOneButtonHandler:(id)sender {
+    
+    AudioServicesPlaySystemSound(soundID);
+    
     currentInput = ceilf(currentInput / 10);
     [self updatePayment];
 }
 
 -(IBAction)returnButtonHandler:(id)sender {
+    
+    AudioServicesPlaySystemSound(soundID);
+    
     Home * homeScene = [[self storyboard] instantiateViewControllerWithIdentifier:@"home_scene"];
     [self presentViewController:homeScene animated:YES completion:nil];
 }

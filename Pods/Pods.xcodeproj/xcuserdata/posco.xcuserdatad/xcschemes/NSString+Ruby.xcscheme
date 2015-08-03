@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3B7E3AF0DF8C4B9C40A5C75D"
+               BlueprintIdentifier = "FDB5387CCD9CD353DA62AFE0"
                BuildableName = "libNSString+Ruby.a"
                BlueprintName = "NSString+Ruby"
                ReferencedContainer = "container:Pods.xcodeproj">

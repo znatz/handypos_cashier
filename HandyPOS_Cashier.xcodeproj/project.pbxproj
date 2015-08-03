@@ -10,6 +10,7 @@
 		43A50574EAF22DAAF9848441 /* libPods-HandyPOS_Cashier.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 003BB8F8E758F3C826F4195A /* libPods-HandyPOS_Cashier.a */; };
 		67307FC41B6B13A800B9ED26 /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 67307FC31B6B13A800B9ED26 /* DBHelper.m */; };
 		673482851B6B052C000D3DE5 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 673482841B6B052C000D3DE5 /* NetworkManager.m */; };
+		676361111B6F22A70095071F /* PayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 676361101B6F22A70095071F /* PayController.m */; };
 		677370921B6AE99F00E0F020 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 677370911B6AE99F00E0F020 /* main.m */; };
 		677370951B6AE99F00E0F020 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 677370941B6AE99F00E0F020 /* AppDelegate.m */; };
 		677370981B6AE99F00E0F020 /* Home.m in Sources */ = {isa = PBXBuildFile; fileRef = 677370971B6AE99F00E0F020 /* Home.m */; };
@@ -28,6 +29,8 @@
 		67307FC31B6B13A800B9ED26 /* DBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHelper.m; sourceTree = "<group>"; };
 		673482831B6B052C000D3DE5 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		673482841B6B052C000D3DE5 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
+		6763610F1B6F22A70095071F /* PayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayController.h; sourceTree = "<group>"; };
+		676361101B6F22A70095071F /* PayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayController.m; sourceTree = "<group>"; };
 		6773708D1B6AE99F00E0F020 /* HandyPOS_Cashier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HandyPOS_Cashier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		677370911B6AE99F00E0F020 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		677370931B6AE99F00E0F020 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -110,6 +113,8 @@
 				677370A41B6AE99F00E0F020 /* Info.plist */,
 				6773709C1B6AE99F00E0F020 /* HandyPOS_Cashier.xcdatamodeld */,
 				677370901B6AE99F00E0F020 /* Supporting Files */,
+				6763610F1B6F22A70095071F /* PayController.h */,
+				676361101B6F22A70095071F /* PayController.m */,
 			);
 			path = HandyPOS_Cashier;
 			sourceTree = "<group>";
@@ -255,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				676361111B6F22A70095071F /* PayController.m in Sources */,
 				677370981B6AE99F00E0F020 /* Home.m in Sources */,
 				6773709E1B6AE99F00E0F020 /* HandyPOS_Cashier.xcdatamodeld in Sources */,
 				677370951B6AE99F00E0F020 /* AppDelegate.m in Sources */,

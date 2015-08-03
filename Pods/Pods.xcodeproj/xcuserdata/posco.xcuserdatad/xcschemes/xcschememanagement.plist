@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FlatUIKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>NSString+Ruby.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,27 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1E61AB7D0A574E498D2DAAC905583D17</key>
+		<key>54869DC9B73B81F7CB3FE5B612AA6897</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2F3F996B04B75382ED090DE38A9010ED</key>
+		<key>749ECDB85001258A6A6E3F3E91167CEE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>439396B606ACE4120ABEC179802FDB22</key>
+		<key>C34692A9ACA22D0C2CCAC4E764ADA19A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>765C7EF792321C356B879B6FFE9C0174</key>
+		<key>CCC0F04CACEE22C1953E94233E997AC5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>974C61F6E23E36E5E30030FBB28C6BD6</key>
+		<key>D3652F8D29BB6CC15FBE2A1A8BA3AA89</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FB41100FCB799138CE24AC28228D50EA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -11,6 +11,7 @@
 #import "DBHelper.h"
 #import "Receipt.h"
 #import "NSString+Ruby.h"
+#import "PayController.h"
 
 @interface Home () <APNumberPadDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -55,8 +56,9 @@ NSMutableArray * receipt ;
     [super didReceiveMemoryWarning];
 }
 
- #pragma mark - APNumberPadDelegate
- 
+#pragma mark - APNumberPadDelegate
+
+/* "Search" Button Handler ---------------------*/
 - (void)numberPad:(APNumberPad *)numberPad functionButtonAction:(UIButton *)functionButton textInput:(UIResponder<UITextInput> *)textInput {
     
     receipt = [[NSMutableArray alloc] init];
@@ -78,6 +80,7 @@ NSMutableArray * receipt ;
     
 }
 
+/* Show List Handler ---------------------------*/
 - (void) showResult {
     _tableNO.hidden    = YES;
     _receiptNO.hidden  = YES;
@@ -91,10 +94,12 @@ NSMutableArray * receipt ;
     
 }
 
+/* Retrieve Database Handler -------------------*/
 - (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated {
     [NetworkManager fetchAllDB];
 }
 
+/* "Back" Button Handler ----------------------*/
 -(IBAction) goback:(id)sender {
     _receiptContents.hidden = YES;
     _tableNO.hidden         = NO;
@@ -107,7 +112,14 @@ NSMutableArray * receipt ;
     [NetworkManager fetchAllDB];
 }
 
-/* --------------------- TableView */
+/* "Pay" Button Handler ------------------------*/
+-(IBAction) pay:(id)sender {
+    PayController * payScene = [[self storyboard] instantiateViewControllerWithIdentifier:@"pay_scene"];
+    payScene.receivable_amount = [self getRawTotalPriceFromReceipt:receipt];
+    [self presentViewController:payScene animated:YES completion:nil];
+}
+
+/* ::: =======================================================================================TableView ==========:::*/
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (count_of_receipt_line == 0) {
         return 0;
@@ -115,12 +127,17 @@ NSMutableArray * receipt ;
     return 20;
 }
 
-- (NSString *) getTotalPriceFromReceipt:(NSMutableArray *) rs {
+- (int) getRawTotalPriceFromReceipt:(NSMutableArray *) rs {
     int total = 0;
     for (Receipt * r in rs) {
         total += r.price * r.kosu;
     }
-    NSString * result = [NSString stringWithFormat:@"合計：￥%d", total];
+    return total;
+}
+
+
+- (NSString *) getTotalPriceFromReceipt:(NSMutableArray *) rs {
+    NSString * result = [NSString stringWithFormat:@"合計：￥%d", [self getRawTotalPriceFromReceipt:rs]];
     result = [result rightJustify:30 with:@" "];
     return result;
 }
@@ -140,8 +157,9 @@ NSMutableArray * receipt ;
     UITableViewCell *cell;
     
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                      reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc]
+                initWithStyle:UITableViewCellStyleSubtitle
+                reuseIdentifier:CellIdentifier];
     }
     
     
@@ -167,7 +185,7 @@ NSMutableArray * receipt ;
         [back setBackgroundColor:[UIColor yellowColor]];
         
         UIButton * advanced = [UIButton buttonWithType:UIButtonTypeCustom];
-        [advanced addTarget:self action:@selector(goback:) forControlEvents:UIControlEventTouchUpInside];
+        [advanced addTarget:self action:@selector(pay:) forControlEvents:UIControlEventTouchUpInside];
         [advanced setTitle:@"支払い" forState:UIControlStateNormal];
         [advanced setFrame:CGRectMake([self.view frame].size.width - 120.0, 0.0, 80.0, 44.0)];
         [advanced.titleLabel setFont:[UIFont boldSystemFontOfSize:21.0]];

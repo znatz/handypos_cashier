@@ -16,15 +16,35 @@
 @end
 
 @implementation PayController
+int currentInput;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"%d", _receivable_amount);
     _receivable.text = [NSString stringWithFormat:@"%d",_receivable_amount];
     
+    [self appendButton];
+    
+}
+
+-(IBAction)numberButtonHandler:(id)sender {
+    FUIButton * btn = (FUIButton *) sender;
+    if (currentInput < 1000000) {
+        if (btn.tag == 10) {
+            currentInput *= 100;
+        } else {
+            currentInput *= 10;
+            currentInput += btn.tag;
+        }
+        
+        [self updatePayment];
+    }
+}
+
+- (void) appendButton {
     /* Buton 1 ~ 9 */
     CGFloat leftMargin      = 15.0f;
-    CGFloat topMargin       = 150.0f;
+    CGFloat topMargin       = 170.0f;
     CGFloat btnHeight       = 70.0f;
     CGFloat btnWidth        = 70.0f;
     CGFloat btnHeightWithMargin = 1.0f + btnHeight;
@@ -45,6 +65,7 @@
             [btn setTitleColor:[UIColor cloudsColor] forState:UIControlStateHighlighted];
             btn.tag = (row - 1) * 3 + col;
             [btn setTitle:[NSString stringWithFormat:@"%d", btn.tag] forState:UIControlStateNormal];
+            [btn addTarget:self action:@selector(numberButtonHandler:) forControlEvents:UIControlEventTouchUpInside];
         
             [[self view] addSubview:btn];
         }
@@ -62,6 +83,7 @@
     [btn setTitleColor:[UIColor cloudsColor] forState:UIControlStateHighlighted];
     btn.tag = 0;
     [btn setTitle:@"0" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(numberButtonHandler:) forControlEvents:UIControlEventTouchUpInside];
     [[self view] addSubview:btn];
     
      /* Button 00 btn00 , tag : 10 */
@@ -76,6 +98,7 @@
     [btn00 setTitleColor:[UIColor cloudsColor] forState:UIControlStateHighlighted];
     btn00.tag = 10;
     [btn00 setTitle:@"00" forState:UIControlStateNormal];
+    [btn00 addTarget:self action:@selector(numberButtonHandler:) forControlEvents:UIControlEventTouchUpInside];
     [[self view] addSubview:btn00];
     
     /* Submit Button btn11 tag : 11 */
@@ -92,7 +115,7 @@
     [btn11 setTitle:@"確認" forState:UIControlStateNormal];
     [[self view] addSubview:btn11];
     
-     /* ClearAll Button btn12 tag : 12 */
+     /* Return to Previous Page Button btn12 tag : 12 */
     left = leftMargin + 3 * btnWidthWithMargin;
     top  = topMargin  ;
     FUIButton * btn12 = [[FUIButton alloc] initWithFrame:CGRectMake(left, top, btnWidth, btnHeight)];
@@ -103,7 +126,7 @@
     [btn12 setTitleColor:[UIColor cloudsColor] forState:UIControlStateNormal];
     [btn12 setTitleColor:[UIColor cloudsColor] forState:UIControlStateHighlighted];
     btn12.tag = 12;
-    [btn12 setTitle:@"クリア" forState:UIControlStateNormal];
+    [btn12 setTitle:@"戻る" forState:UIControlStateNormal];
     [[self view] addSubview:btn12];
     
       /* ClearOne Button btn13 tag : 13 */
@@ -140,4 +163,7 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)updatePayment {
+    _payment.text = [NSString stringWithFormat:@"%d", currentInput];
+}
 @end

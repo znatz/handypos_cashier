@@ -90,41 +90,79 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aHd-bd-bi2" userLabel="Receivable">
-                                <rect key="frame" x="124" y="28" width="97" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aHd-bd-bi2" userLabel="Receivable">
+                                <rect key="frame" x="120" y="40" width="455" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="MiB-OP-TRP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A5l-LM-3gf" userLabel="Payment">
-                                <rect key="frame" x="124" y="66" width="97" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A5l-LM-3gf" userLabel="Payment">
+                                <rect key="frame" x="120" y="85" width="455" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="r0f-Rr-mYj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="972-6V-NL2" userLabel="Change">
-                                <rect key="frame" x="124" y="115" width="97" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="972-6V-NL2" userLabel="Change">
+                                <rect key="frame" x="120" y="130" width="455" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Xdi-b9-eyi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="合計" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llT-2i-dX4">
-                                <rect key="frame" x="20" y="31" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="合計" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llT-2i-dX4">
+                                <rect key="frame" x="15" y="40" width="100" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="L5W-f5-n5Y"/>
+                                    <constraint firstAttribute="width" constant="100" id="UBI-Kj-0zN"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="お預かり" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pvo-xj-p8h">
-                                <rect key="frame" x="20" y="69" width="85" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お預かり" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pvo-xj-p8h">
+                                <rect key="frame" x="15" y="85" width="100" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="azw-gd-NUk"/>
+                                    <constraint firstAttribute="width" constant="100" id="itM-1h-P3p"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="お釣り" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4M-Ib-Ccr">
-                                <rect key="frame" x="20" y="117" width="79" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お釣り" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4M-Ib-Ccr">
+                                <rect key="frame" x="15" y="130" width="100" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="kyV-Wz-LgL"/>
+                                    <constraint firstAttribute="height" constant="40" id="u3E-c4-f3E"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="L4M-Ib-Ccr" firstAttribute="top" secondItem="Pvo-xj-p8h" secondAttribute="bottom" constant="5" id="3mI-OD-5bP"/>
+                            <constraint firstItem="aHd-bd-bi2" firstAttribute="leading" secondItem="llT-2i-dX4" secondAttribute="trailing" constant="5" id="5dc-82-bin"/>
+                            <constraint firstItem="aHd-bd-bi2" firstAttribute="top" secondItem="fMr-TH-McS" secondAttribute="bottom" constant="20" id="FR6-Sn-Kbr"/>
+                            <constraint firstItem="A5l-LM-3gf" firstAttribute="leading" secondItem="Pvo-xj-p8h" secondAttribute="trailing" constant="5" id="Fjp-WL-xQr"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Pvo-xj-p8h" secondAttribute="leading" constant="5" id="KWR-L1-VZ6"/>
+                            <constraint firstItem="A5l-LM-3gf" firstAttribute="top" secondItem="aHd-bd-bi2" secondAttribute="bottom" constant="5" id="Qlt-qH-EC1"/>
+                            <constraint firstItem="Pvo-xj-p8h" firstAttribute="top" secondItem="llT-2i-dX4" secondAttribute="bottom" constant="5" id="Sx2-2U-a1a"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="A5l-LM-3gf" secondAttribute="trailing" constant="5" id="V2j-To-7kP"/>
+                            <constraint firstItem="972-6V-NL2" firstAttribute="top" secondItem="A5l-LM-3gf" secondAttribute="bottom" constant="5" id="Xsh-LK-C1a"/>
+                            <constraint firstItem="L4M-Ib-Ccr" firstAttribute="leading" secondItem="Ggw-Ya-Ewx" secondAttribute="leadingMargin" constant="-5" id="YiO-BQ-t9g"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aHd-bd-bi2" secondAttribute="trailing" constant="5" id="ZSk-ds-Mdo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="972-6V-NL2" secondAttribute="trailing" constant="5" id="d8J-W7-QNr"/>
+                            <constraint firstItem="llT-2i-dX4" firstAttribute="top" secondItem="fMr-TH-McS" secondAttribute="bottom" constant="20" id="giq-Yu-BPb"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="llT-2i-dX4" secondAttribute="leading" constant="5" id="uLm-rx-Jw2"/>
+                            <constraint firstItem="972-6V-NL2" firstAttribute="leading" secondItem="L4M-Ib-Ccr" secondAttribute="trailing" constant="5" id="zS7-c1-mbh"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="change" destination="972-6V-NL2" id="YYv-xQ-Xb5"/>

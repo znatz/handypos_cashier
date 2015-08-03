@@ -26,9 +26,10 @@ NSMutableArray * receipt ;
 
 - (void)viewDidLoad {
     [NetworkManager fetchAllDB];
+    count_of_receipt_line       = receipt.count;
     [super viewDidLoad];
     _receiptNO.inputView = ({
-        APNumberPad *numberPad = [APNumberPad numberPadWithDelegate:self];
+        APNumberPad *numberPad  = [APNumberPad numberPadWithDelegate:self];
         [numberPad.leftFunctionButton setTitle:@"検索" forState:UIControlStateNormal];
         numberPad.leftFunctionButton.titleLabel.adjustsFontSizeToFitWidth = YES;
         numberPad.leftFunctionButton.tag = 0;
@@ -36,7 +37,7 @@ NSMutableArray * receipt ;
     });
     
     _tableNO.inputView = ({
-        APNumberPad *numberPad = [APNumberPad numberPadWithDelegate:self];
+        APNumberPad *numberPad  = [APNumberPad numberPadWithDelegate:self];
         [numberPad.leftFunctionButton setTitle:@"検索" forState:UIControlStateNormal];
         numberPad.leftFunctionButton.titleLabel.adjustsFontSizeToFitWidth = YES;
         numberPad.leftFunctionButton.tag = 1;
@@ -57,7 +58,8 @@ NSMutableArray * receipt ;
  #pragma mark - APNumberPadDelegate
  
 - (void)numberPad:(APNumberPad *)numberPad functionButtonAction:(UIButton *)functionButton textInput:(UIResponder<UITextInput> *)textInput {
-     
+    
+    receipt = [[NSMutableArray alloc] init];
     receipt = functionButton.tag == 0 ? [DBHelper getReceiptByReceiptNo:_receiptNO.text] : [DBHelper getReceiptByTableNo:_tableNO.text];
     if (receipt.count > 0) {
         [self showResult] ;
@@ -66,11 +68,12 @@ NSMutableArray * receipt ;
                             initWithTitle : nil
                             message : @"該当するレシートが\r\n見つかりませんでした"
                             delegate : self
-                            cancelButtonTitle : nil
-                            otherButtonTitles : @"戻る", nil];
+                            cancelButtonTitle : @"データー更新する"
+                            otherButtonTitles : nil, nil];
         [av show];
         count_of_receipt_line = 0;
     }
+    
     [_receiptContents reloadData];
     
 }
@@ -82,9 +85,14 @@ NSMutableArray * receipt ;
     [_receiptNO resignFirstResponder];
     [_tableNO resignFirstResponder];
     
-    count_of_receipt_line = receipt.count;
-    self.receiptContents.hidden    = NO;
+    count_of_receipt_line           = receipt.count;
+    self.receiptContents.hidden     = NO;
+    [_receiptContents reloadData];
     
+}
+
+- (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated {
+    [NetworkManager fetchAllDB];
 }
 
 -(IBAction) goback:(id)sender {
@@ -92,7 +100,11 @@ NSMutableArray * receipt ;
     _tableNO.hidden         = NO;
     _receiptNO.hidden       = NO;
     _titleLabel.text        = @"検索";
+    count_of_receipt_line   = 0;
+    receipt                 = nil;
+    [_receiptContents reloadData];
     
+    [NetworkManager fetchAllDB];
 }
 
 /* --------------------- TableView */
@@ -100,7 +112,7 @@ NSMutableArray * receipt ;
     if (count_of_receipt_line == 0) {
         return 0;
     }
-    return 100;
+    return 20;
 }
 
 - (NSString *) getTotalPriceFromReceipt:(NSMutableArray *) rs {
@@ -115,16 +127,17 @@ NSMutableArray * receipt ;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row > (receipt.count + 1)) {
-        return 0.0;
+        return 0.01f;
+    } else {
+        return 44.0f;
     }
-    return 44.0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell;
     
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
@@ -132,14 +145,19 @@ NSMutableArray * receipt ;
     }
     
     
+    // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ show nothing if row overflow array
+    if (indexPath.row > receipt.count + 1) return cell;
+    
     // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ last second line
     if (indexPath.row == receipt.count) {
         cell.textLabel.text  = [self getTotalPriceFromReceipt:receipt];
         return cell;
     }
     
+    
     // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ last line
     if (indexPath.row == (receipt.count + 1)) {
+        
         
         UIButton * back     = [UIButton buttonWithType:UIButtonTypeCustom];
         [back addTarget:self action:@selector(goback:) forControlEvents:UIControlEventTouchUpInside];
@@ -160,8 +178,6 @@ NSMutableArray * receipt ;
         return cell;
     }
     
-    // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ show nothing if row overflow array
-    if (indexPath.row > receipt.count) return cell;
     
     // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ normal line
     Receipt * eachReceipt   = receipt[indexPath.row];

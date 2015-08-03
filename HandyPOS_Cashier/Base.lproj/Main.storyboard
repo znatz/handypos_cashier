@@ -18,47 +18,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tOU-Rr-LBr">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1je-Pt-Can">
-                                        <rect key="frame" x="115" y="23" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1je-Pt-Can">
+                                <rect key="frame" x="20" y="0.0" width="560" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="1je-Pt-Can" secondAttribute="trailing" constant="5" id="JHe-iw-Qhi"/>
-                                    <constraint firstItem="1je-Pt-Can" firstAttribute="leading" secondItem="tOU-Rr-LBr" secondAttribute="leading" constant="5" id="WXL-kR-YYd"/>
+                                    <constraint firstAttribute="height" constant="80" id="zKb-Bq-byz"/>
                                 </constraints>
-                            </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="レシート番号で検索" borderStyle="roundedRect" placeholder="レシート番号で検索" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8az-hQ-oZf" userLabel="receiptNO">
-                                <rect key="frame" x="67" y="52" width="442" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="レシート番号で検索" borderStyle="roundedRect" placeholder="レシート番号で検索" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8az-hQ-oZf" userLabel="receiptNO">
+                                <rect key="frame" x="25" y="88" width="550" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="xBe-qa-3as"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="テーブル番号で検索" borderStyle="roundedRect" placeholder="テーブル番号で検索" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0m4-Oz-1VR" userLabel="tableNO">
-                                <rect key="frame" x="67" y="90" width="442" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="テーブル番号で検索" borderStyle="roundedRect" placeholder="テーブル番号で検索" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0m4-Oz-1VR" userLabel="tableNO">
+                                <rect key="frame" x="25" y="142" width="550" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="U1h-hQ-7Z7"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ReJ-eM-FXy" userLabel="receiptContents">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="256"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="ReJ-eM-FXy" userLabel="receiptContents">
+                                <rect key="frame" x="20" y="78" width="565" height="517"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexTrackingBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="8az-hQ-oZf" secondAttribute="trailing" constant="5" id="Ay6-lP-L50"/>
-                            <constraint firstItem="8az-hQ-oZf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="5" id="Icr-lT-xMa"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ReJ-eM-FXy" secondAttribute="bottom" constant="30" id="Ojt-dX-Mvs"/>
-                            <constraint firstItem="0m4-Oz-1VR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="5" id="VMJ-9e-ajs"/>
-                            <constraint firstItem="ReJ-eM-FXy" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="44" id="bu4-fb-nXR"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="0m4-Oz-1VR" secondAttribute="trailing" constant="5" id="eUb-30-Jw7"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ReJ-eM-FXy" secondAttribute="trailing" constant="5" id="g7z-8S-ue1"/>
-                            <constraint firstItem="ReJ-eM-FXy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="5" id="uqj-ah-gUU"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="ReJ-eM-FXy" secondAttribute="leading" id="5DA-Dw-9aa"/>
+                            <constraint firstItem="8az-hQ-oZf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="5" id="6hn-ct-aeu"/>
+                            <constraint firstItem="ReJ-eM-FXy" firstAttribute="top" secondItem="1je-Pt-Can" secondAttribute="bottom" constant="-2" id="HPY-Mk-y2c"/>
+                            <constraint firstItem="0m4-Oz-1VR" firstAttribute="top" secondItem="8az-hQ-oZf" secondAttribute="bottom" constant="4" id="Lla-vf-TLS"/>
+                            <constraint firstItem="8az-hQ-oZf" firstAttribute="top" secondItem="1je-Pt-Can" secondAttribute="bottom" constant="8" id="Szc-Vd-ajo"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ReJ-eM-FXy" secondAttribute="bottom" constant="5" id="W5b-xV-wzc"/>
+                            <constraint firstItem="1je-Pt-Can" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="XcP-I6-fmf"/>
+                            <constraint firstItem="0m4-Oz-1VR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="5" id="Z6Q-uX-DTx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8az-hQ-oZf" secondAttribute="trailing" constant="5" id="jb1-If-994"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0m4-Oz-1VR" secondAttribute="trailing" constant="5" id="mKx-BP-oU2"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="1je-Pt-Can" secondAttribute="leading" id="ntg-Yj-1pR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1je-Pt-Can" secondAttribute="trailing" id="trV-LH-gLW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ReJ-eM-FXy" secondAttribute="trailing" constant="-5" id="upT-XI-pca"/>
                         </constraints>
                     </view>
                     <connections>
@@ -70,7 +76,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="305" y="378"/>
+            <point key="canvasLocation" x="207" y="337"/>
         </scene>
     </scenes>
 </document>

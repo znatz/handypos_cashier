@@ -7,6 +7,7 @@
 //
 
 #import "PayController.h"
+#import "Home.h"
 #import <FlatUIKit/FlatUIKit.h>
 
 @interface PayController ()
@@ -17,6 +18,7 @@
 
 @implementation PayController
 int currentInput;
+int currentChanges;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,6 +27,10 @@ int currentInput;
     
     [self appendButton];
     
+}
+
+-(IBAction)submitButtonHandler:(id)sender {
+    [self validation];
 }
 
 -(IBAction)numberButtonHandler:(id)sender {
@@ -41,9 +47,49 @@ int currentInput;
     }
 }
 
+-(IBAction)changesButtonHandler:(id)sender {
+    currentChanges = currentInput - self.receivable_amount;
+    [self updateChanges];
+}
+
+
+-(IBAction)clearOneButtonHandler:(id)sender {
+    currentInput = ceilf(currentInput / 10);
+    [self updatePayment];
+}
+
+-(IBAction)returnButtonHandler:(id)sender {
+    Home * homeScene = [[self storyboard] instantiateViewControllerWithIdentifier:@"home_scene"];
+    [self presentViewController:homeScene animated:YES completion:nil];
+}
+
+
+-(BOOL)validation {
+    if (currentInput < _receivable_amount) {
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle : nil
+                                                      message : @"入金が足りません。"
+                                                     delegate : self
+                                            cancelButtonTitle : @"再入力"
+                                            otherButtonTitles : nil, nil];
+        [av show];
+        return NO;
+    }
+    if (currentInput - _receivable_amount != currentChanges) {
+         UIAlertView * av = [[UIAlertView alloc] initWithTitle : nil
+                                                      message : @"お釣りに間違いがあります。"
+                                                     delegate : self
+                                            cancelButtonTitle : @"再入力"
+                                            otherButtonTitles : nil, nil];
+        [av show];
+        return NO;
+    }
+    return YES;
+}
+
+
 - (void) appendButton {
     /* Buton 1 ~ 9 */
-    CGFloat leftMargin      = 15.0f;
+    CGFloat leftMargin      = 18.0f;
     CGFloat topMargin       = 170.0f;
     CGFloat btnHeight       = 70.0f;
     CGFloat btnWidth        = 70.0f;
@@ -113,6 +159,7 @@ int currentInput;
     [btn11 setTitleColor:[UIColor cloudsColor] forState:UIControlStateHighlighted];
     btn11.tag = 11;
     [btn11 setTitle:@"確認" forState:UIControlStateNormal];
+    [btn11 addTarget:self action:@selector(submitButtonHandler:) forControlEvents:UIControlEventTouchUpInside];
     [[self view] addSubview:btn11];
     
      /* Return to Previous Page Button btn12 tag : 12 */
@@ -127,6 +174,7 @@ int currentInput;
     [btn12 setTitleColor:[UIColor cloudsColor] forState:UIControlStateHighlighted];
     btn12.tag = 12;
     [btn12 setTitle:@"戻る" forState:UIControlStateNormal];
+    [btn12 addTarget:self action:@selector(returnButtonHandler:) forControlEvents:UIControlEventTouchUpInside];
     [[self view] addSubview:btn12];
     
       /* ClearOne Button btn13 tag : 13 */
@@ -141,6 +189,7 @@ int currentInput;
     [btn13 setTitleColor:[UIColor cloudsColor] forState:UIControlStateHighlighted];
     btn13.tag = 13;
     [btn13 setTitle:@"<-" forState:UIControlStateNormal];
+    [btn13 addTarget:self action:@selector(clearOneButtonHandler:) forControlEvents:UIControlEventTouchUpInside];
     [[self view] addSubview:btn13];
     
       /* Changes Button btn14 tag : 14 */
@@ -155,6 +204,7 @@ int currentInput;
     [btn14 setTitleColor:[UIColor cloudsColor] forState:UIControlStateHighlighted];
     btn14.tag = 14;
     [btn14 setTitle:@"お釣り" forState:UIControlStateNormal];
+    [btn14 addTarget:self action:@selector(changesButtonHandler:) forControlEvents:UIControlEventTouchUpInside];
     [[self view] addSubview:btn14];
  
 }
@@ -165,5 +215,9 @@ int currentInput;
 
 - (void)updatePayment {
     _payment.text = [NSString stringWithFormat:@"%d", currentInput];
+}
+
+- (void)updateChanges {
+    _change.text  = [NSString stringWithFormat:@"%d", currentChanges];
 }
 @end

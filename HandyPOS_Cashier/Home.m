@@ -58,30 +58,41 @@ NSMutableArray * receipt ;
  
 - (void)numberPad:(APNumberPad *)numberPad functionButtonAction:(UIButton *)functionButton textInput:(UIResponder<UITextInput> *)textInput {
      
-     if (functionButton.tag == 0) {
-         receipt = [DBHelper getReceiptByReceiptNo:_receiptNO.text];
-         if (receipt.count > 0) {
-             _tableNO.hidden    = YES;
-             _receiptNO.hidden  = YES;
-             _titleLabel.text   = @"レシート";
-             [_receiptNO resignFirstResponder];
-             [_tableNO resignFirstResponder];
-         }
-     } else {
-         receipt = [DBHelper getReceiptByTableNo:_tableNO.text];
-         if (receipt.count > 0) {
-             _tableNO.hidden    = YES;
-             _receiptNO.hidden  = YES;
-             _titleLabel.text   = @"レシート";
-             [_receiptNO resignFirstResponder];
-             [_tableNO resignFirstResponder];
-         }
-     }
-     count_of_receipt_line = receipt.count;
-     self.receiptContents.hidden    = NO;
-     [self.receiptContents reloadData];
-     [textInput insertText:@"検索中・・・"];
-     
+    receipt = functionButton.tag == 0 ? [DBHelper getReceiptByReceiptNo:_receiptNO.text] : [DBHelper getReceiptByTableNo:_tableNO.text];
+    if (receipt.count > 0) {
+        [self showResult] ;
+    } else {
+        UIAlertView * av = [ [UIAlertView alloc]
+                            initWithTitle : nil
+                            message : @"該当するレシートが\r\n見つかりませんでした"
+                            delegate : self
+                            cancelButtonTitle : nil
+                            otherButtonTitles : @"戻る", nil];
+        [av show];
+        count_of_receipt_line = 0;
+    }
+    [_receiptContents reloadData];
+    
+}
+
+- (void) showResult {
+    _tableNO.hidden    = YES;
+    _receiptNO.hidden  = YES;
+    _titleLabel.text   = @"レシート";
+    [_receiptNO resignFirstResponder];
+    [_tableNO resignFirstResponder];
+    
+    count_of_receipt_line = receipt.count;
+    self.receiptContents.hidden    = NO;
+    
+}
+
+-(IBAction) goback:(id)sender {
+    _receiptContents.hidden = YES;
+    _tableNO.hidden         = NO;
+    _receiptNO.hidden       = NO;
+    _titleLabel.text        = @"検索";
+    
 }
 
 /* --------------------- TableView */
@@ -165,12 +176,6 @@ NSMutableArray * receipt ;
 }
 
 
--(IBAction) goback:(id)sender {
-    _receiptContents.hidden = YES;
-    _tableNO.hidden         = NO;
-    _receiptNO.hidden       = NO;
-    _titleLabel.text        = @"検索";
-    
-}
+
 
 @end

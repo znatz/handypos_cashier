@@ -38,7 +38,6 @@
       setCompletionBlockWithSuccess : ^(AFHTTPRequestOperation *operation, id responseObject)
      {
          NSLog(@"ダウンロード成功！ dbの保存先:%@", downloadDestinationPath);
-         [DBHelper removeUnusedTalbesFromDB:dbfileName forgiveTable:[@[@"DataFromIOs", @"BTSMAS"] mutableCopy]];
      }
       failure : ^(AFHTTPRequestOperation *operation, NSError *error)
      {
@@ -50,7 +49,7 @@
  }
  
  + (void) fetchAllDB {
-     [self fetchDBFile:@"Master.sqlite"];
+     [self fetchDBFile:@"Cashier.sqlite"];
 }
 
 

@@ -11,9 +11,7 @@
 #import "Receipt.h"
 #import <FMDatabase.h>
 
-#define DB_FILE         @"Master.sqlite"
-#define GOODS_TABLE     @"BTSMAS"
-#define RECEIPT_TABLE   @"DataFromIOs"
+#define DB_FILE         @"Cashier.sqlite"
 
 @implementation DBHelper
 + (FMDatabase *) getDBFromFile : (NSString *) filename {
@@ -23,50 +21,26 @@
     return db;
 }
 
-+ (void) removeUnusedTalbesFromDB : (NSString *) dbfile forgiveTable : (NSMutableArray *) tablenames {
-    
-    NSMutableSet * keepTables      = [NSMutableSet setWithArray:tablenames];
-    NSMutableSet * allTableNames   = [[NSMutableSet alloc] init];
-    
-    FMDatabase  * db = [self getDBFromFile:dbfile];
-    FMResultSet * result;
-    
-    [db open];
-    result = [db executeQuery:@"SELECT name FROM sqlite_sequence"];
-    while ([result next]) {
-        NSString * existTable = [result stringForColumn:@"name"];
-        [allTableNames addObject:existTable];
-    }
-    [db close];
-    
-    [allTableNames minusSet:keepTables];
-    
-    for (NSString * removableTable in allTableNames) {
-        [db open];
-        NSLog(@"TO BE DELETE %@", removableTable);
-        [db executeStatements:[@"DROP TABLE ":removableTable, nil]];
-        [db close];
-    }
-}
-
 +(NSMutableArray *) getReceiptByReceiptNo : (NSString *) i {
     
     Receipt * r;
     NSMutableArray * receipts = [[NSMutableArray alloc] init];
     FMDatabase * db = [self getDBFromFile:DB_FILE];
     FMResultSet * result;
+    NSString * query = [NSString stringWithFormat:@"SELECT * FROM receipt_lines WHERE receiptNo = %@", i ];
     
     [db open];
-    result = [db executeQuery:@"SELECT * FROM DataFromIOs WHERE receiptNo = ?", i ];
+    result = [db executeQuery:query];
     while ([result next]) {
         r = [[Receipt alloc] initWithID : [result stringForColumn:@"id"]
-                                  tanto : [result stringForColumn:@"tanto"]
+                                  tanto : [result stringForColumn:@"tantoID"]
                              goodsTitle : [result stringForColumn:@"goodsTitle"]
-                                   kosu : [[result stringForColumn:@"kosu"] intValue]
+                                   kosu : [result intForColumn:@"kosu"]
                                    time : [result stringForColumn:@"time"]
                               receiptNo : [result stringForColumn:@"receiptNo"]
-                                tableNO : [result stringForColumn:@"tableNO"] price:0];
-        [receipts addObject:[self setPriceOfReceipt:r]];
+                                tableNO : [result stringForColumn:@"tableNO"]
+                                  price : [result intForColumn:@"price"]];
+        [receipts addObject:r];
     }
     [db close];
     return receipts;
@@ -78,37 +52,23 @@
     NSMutableArray * receipts = [[NSMutableArray alloc] init];
     FMDatabase * db = [self getDBFromFile:DB_FILE];
     FMResultSet * result;
+    NSString * query = [NSString stringWithFormat:@"SELECT * FROM receipt_lines WHERE tableNO = %@", i ];
     
     [db open];
-    result = [db executeQuery:@"SELECT * FROM DataFromIOs WHERE tableNO = ?", i ];
+    result = [db executeQuery:query];
     while ([result next]) {
         r = [[Receipt alloc] initWithID : [result stringForColumn:@"id"]
-                                  tanto : [result stringForColumn:@"tanto"]
+                                  tanto : [result stringForColumn:@"tantoID"]
                              goodsTitle : [result stringForColumn:@"goodsTitle"]
-                                   kosu : [[result stringForColumn:@"kosu"] intValue]
+                                   kosu : [result intForColumn:@"kosu"]
                                    time : [result stringForColumn:@"time"]
                               receiptNo : [result stringForColumn:@"receiptNo"]
-                                tableNO : [result stringForColumn:@"tableNO"] price:0];
-        [receipts addObject:[self setPriceOfReceipt:r]];
+                                tableNO : [result stringForColumn:@"tableNO"]
+                                  price : [result intForColumn:@"price"]];
+        [receipts addObject:r];
     }
     [db close];
     return receipts;
 }
 
-
-
-
-+(Receipt *) setPriceOfReceipt : (Receipt *) r {
-    FMDatabase * db = [self getDBFromFile:DB_FILE];
-    FMResultSet * result;
-    
-    [db open];
-    result = [db executeQuery:@"SELECT price FROM BTSMAS WHERE title = ?", r.goodsTitle ];
-    while ([result next]) {
-        r.price = [result intForColumn:@"price"];
-    }
-    [db close];
-    return r;
-    
-}
 @end

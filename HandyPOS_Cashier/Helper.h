@@ -11,4 +11,5 @@
 @interface Helper : NSObject
 
 + (NSString *)setToCurrency : (int) c ;
++ (NSString *)getCurrentTime ;
 @end

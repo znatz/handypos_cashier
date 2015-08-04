@@ -10,4 +10,5 @@
 
 @interface PayController : UIViewController
 @property int receivable_amount;
+@property NSMutableArray * receiptNumbers;
 @end

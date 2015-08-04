@@ -14,6 +14,8 @@
 @interface DBHelper : NSObject
 
 + (void) prepareTransactionDatabase ;
++ (void) recordPayment : (Payment *) p withReceiptNumbers : (NSMutableArray *) rns ;
++ (void) cleanUPPaymentRecord ;
 
 + (FMDatabase *) getDBFromFile : (NSString *) filename ;
 + (NSMutableArray *) getReceiptByReceiptNo : (NSString *) i ;

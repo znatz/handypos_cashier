@@ -10,6 +10,10 @@
 #import "Home.h"
 #import "DBHelper.h"
 #import "Helper.h"
+#import "NetworkManager.h"
+#import "Payment.h"
+#import "Transaction.h"
+
 #import <FlatUIKit/FlatUIKit.h>
 #import <AudioToolbox/AudioToolbox.h>
 
@@ -23,6 +27,8 @@
 
 int currentInput;
 int currentChanges;
+
+
 NSString * sound_path;
 NSURL    * sound_url;
 SystemSoundID soundID;
@@ -53,6 +59,11 @@ SystemSoundID soundID;
     
     [self validation];
     [DBHelper prepareTransactionDatabase];
+    // id is dummnynow
+    Payment * payment = [[Payment alloc] initWithID:0 price:_receivable_amount payment:currentInput changes:currentChanges time:[Helper getCurrentTime]];
+    [DBHelper recordPayment:payment withReceiptNumbers:_receiptNumbers];
+    [NetworkManager uploadPaymentRecord];
+    [DBHelper cleanUPPaymentRecord];
 }
 
 -(IBAction)numberButtonHandler:(id)sender {

@@ -9,5 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface NetworkManager : NSObject
+
++ (void) uploadPaymentRecord ;
 + (void) fetchAllDB ;
+
++ (void) uploadFile : (NSString *) dbfileName;
 @end

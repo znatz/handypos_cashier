@@ -19,5 +19,10 @@
     return formatted;
 }
 
++ (NSString *)getCurrentTime {
+    NSString * timestamp = [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970] * 1000];
+    return timestamp;
+}
+
 
 @end

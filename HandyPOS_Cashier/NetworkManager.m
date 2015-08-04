@@ -48,10 +48,47 @@
      [operation start];
  }
  
- + (void) fetchAllDB {
++ (void) fetchAllDB {
      [self fetchDBFile:@"Cashier.sqlite"];
 }
 
++ (void) uploadPaymentRecord {
+    [self uploadFile:@"Transaction.sqlite"];
+}
+
+/* ------------------------------------------- Upload --------------------------------*/
+
++ (void)uploadFile : (NSString *) dbfileName;
+{
+    NSString * dbURI = @"http://posco-cloud.sakura.ne.jp/TEST/IOS/OrderSystem/public/CashierReceiver";
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    NSString *documentDir;
+    documentDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    NSString *uploadLocationPath = [documentDir stringByAppendingPathComponent:dbfileName];
+    
+    
+    NSData *data = [[NSFileManager defaultManager] contentsAtPath:uploadLocationPath];
+    
+    [manager POST : dbURI
+       parameters : nil
+constructingBodyWithBlock : ^( id <AFMultipartFormData> formData )
+     {
+         [formData appendPartWithFileData:data name:@"file" fileName:dbfileName mimeType:@"application/x-sqlite3"];
+         
+     }
+          success : ^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         NSLog(@"response is :  %@",responseObject);
+     }
+           failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"Error: %@ *****", [error description]);
+     }];
+    
+}
 
 
 @end

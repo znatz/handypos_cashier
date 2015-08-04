@@ -29,7 +29,8 @@ NSURL    * url;
 SystemSoundID home_soundID;
 
 NSInteger count_of_receipt_line;
-NSMutableArray * receipt ;
+NSMutableArray * receipt;
+NSMutableArray * receiptNumbers;
 
 - (void)viewDidLoad {
     [NetworkManager fetchAllDB];
@@ -104,14 +105,15 @@ NSMutableArray * receipt ;
         firstLine                       = [firstLine rightJustify:18 with:@" "];
         firstLine                       = [firstLine:r.receiptNo, nil];
         _titleLabel.text                = firstLine;
+        receiptNumbers      = [DBHelper getAllReceiptNumberInTable:r.tableNO];
     } else {
         NSString * firstLine            = @"テーブル : ";
         firstLine                       = [firstLine rightJustify:18 with:@" "];
         firstLine                       = [firstLine:r.tableNO, nil];
         NSString * secondLine           = @"レシート : ";
         secondLine                      = [secondLine rightJustify:18 with:@" "];
-        NSMutableArray * receiptsNumberInTable = [DBHelper getAllReceiptNumberInTable:r.tableNO];
-        for (NSString * number in receiptsNumberInTable) {
+        receiptNumbers      = [DBHelper getAllReceiptNumberInTable:r.tableNO];
+        for (NSString * number in receiptNumbers) {
             secondLine      = [[secondLine:number, nil]:@", ", nil];
         }
         secondLine      = [secondLine chop];
@@ -157,6 +159,7 @@ NSMutableArray * receipt ;
     
     PayController * payScene = [[self storyboard] instantiateViewControllerWithIdentifier:@"pay_scene"];
     payScene.receivable_amount = [self getRawTotalPriceFromReceipt:receipt];
+    payScene.receiptNumbers    = receiptNumbers;
     [self presentViewController:payScene animated:YES completion:nil];
 }
 

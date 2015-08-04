@@ -35,9 +35,9 @@
     query = [NSString stringWithFormat:@"INSERT INTO payments (price, payment, changes, time) VALUES (%d, %d, %d, %@)", p.price, p.payment, p.price, p.time];
     [db open];
     [db executeStatements:query];
+    int payment_id = (int)[db lastInsertRowId];
     [db close];
     
-    int payment_id = (int)[db lastInsertRowId];
     for (NSString * rn in rns) {
         query = [NSString stringWithFormat:@"INSERT INTO transactions (receiptNo, payment_id) VALUES (%@, %d)", rn, payment_id];
         [db open];
@@ -45,6 +45,21 @@
         [db close];
     }
 }
+
++ (void) cleanUPPaymentRecord {
+    FMDatabase * db = [self getDBFromFile:DB_TRANSACTION_FILE];
+    NSString * query;
+    query = @"DROP TABLE transactions;";
+    [db open];
+    [db executeStatements:query];
+    [db close];
+    query = @"DROP TABLE payments;";
+    [db open];
+    [db executeStatements:query];
+    [db close];
+    
+}
+
 /* ------------------------------------------------------------ Handle Receipt ----------------------------------------- */
 + (FMDatabase *) getDBFromFile : (NSString *) filename {
     NSArray *paths  =   NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

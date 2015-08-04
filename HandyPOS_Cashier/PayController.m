@@ -64,6 +64,8 @@ SystemSoundID soundID;
     [DBHelper recordPayment:payment withReceiptNumbers:_receiptNumbers];
     [NetworkManager uploadPaymentRecord];
     [DBHelper cleanUPPaymentRecord];
+    Home * homeScene = [[self storyboard] instantiateViewControllerWithIdentifier:@"home_scene"];
+    [self presentViewController:homeScene animated:YES completion:nil];
 }
 
 -(IBAction)numberButtonHandler:(id)sender {

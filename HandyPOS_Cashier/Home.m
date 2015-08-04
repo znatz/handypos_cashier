@@ -87,6 +87,7 @@ NSMutableArray * receiptNumbers;
                             otherButtonTitles : nil, nil];
         [av show];
         count_of_receipt_line = 0;
+        [NetworkManager fetchAllDB];
     }
     
     [_receiptContents reloadData];

@@ -14,9 +14,12 @@
  
  + (void) fetchDBFile : (NSString *)dbfileName
  {
+     NSFileManager * fileManager = [NSFileManager defaultManager];
      NSString * dbURI        = @"http://posco-cloud.sakura.ne.jp/TEST/IOS/OrderSystem/app/database";
      NSString * documentDir  = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
      NSString * downloadDestinationPath = [documentDir stringByAppendingPathComponent:dbfileName];
+     NSError *error;
+     [fileManager removeItemAtPath:downloadDestinationPath error:&error];
      NSURL    * url;
      NSURLRequest * myRequest;
      AFHTTPRequestOperation * operation;

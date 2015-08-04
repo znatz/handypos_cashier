@@ -8,6 +8,8 @@
 
 #import "PayController.h"
 #import "Home.h"
+#import "DBHelper.h"
+#import "Helper.h"
 #import <FlatUIKit/FlatUIKit.h>
 #import <AudioToolbox/AudioToolbox.h>
 
@@ -27,7 +29,13 @@ SystemSoundID soundID;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _receivable.text = [NSString stringWithFormat:@"%d",_receivable_amount];
+    
+    /* Data Setup */
+    currentInput     = 0;
+    currentChanges   = 0;
+    _receivable.text = [Helper setToCurrency:_receivable_amount];
+    _payment.text    = [NSString stringWithFormat:@"%d", 0];
+    _change.text     = [NSString stringWithFormat:@"%d", 0];
     
     /* Button Setup */
     [self appendButton];
@@ -44,6 +52,7 @@ SystemSoundID soundID;
     AudioServicesPlaySystemSound(soundID);
     
     [self validation];
+    [DBHelper prepareTransactionDatabase];
 }
 
 -(IBAction)numberButtonHandler:(id)sender {
@@ -113,16 +122,26 @@ SystemSoundID soundID;
 
 
 - (void) appendButton {
-    /* Buton 1 ~ 9 */
+    
     CGFloat leftMargin      = 18.0f;
-    CGFloat topMargin       = 170.0f;
-    CGFloat btnHeight       = 70.0f;
-    CGFloat btnWidth        = 70.0f;
-    CGFloat btnHeightWithMargin = 1.0f + btnHeight;
-    CGFloat btnWidthWithMargin  = 1.0f + btnWidth;
+    CGFloat bottomMargin    = 5.0f;
+    CGFloat btnMargin       = 1.0f;
+    
+    CGFloat parentWidth     = self.view.frame.size.width;
+    CGFloat parentHeight    = self.view.frame.size.height;
+    
+    CGFloat btnWidth        = (parentWidth - 2 * leftMargin - btnMargin * 4 )/4;
+    CGFloat btnHeight       = btnWidth;
+    
+    CGFloat btnHeightWithMargin = btnMargin + btnHeight;
+    CGFloat btnWidthWithMargin  = btnMargin + btnWidth;
+    
+    CGFloat topMargin       = parentHeight - 4 * btnHeightWithMargin - bottomMargin;
+    
     CGFloat left;
     CGFloat top;
     
+    /* Buton 1 ~ 9 */
     for (int row = 1; row < 4; row ++) {
         for (int col = 1; col < 4; col++) {
             CGFloat left = leftMargin     + (col - 1) * btnWidthWithMargin;
@@ -134,8 +153,9 @@ SystemSoundID soundID;
             btn.titleLabel.font = [UIFont boldFlatFontOfSize:19];
             [btn setTitleColor:[UIColor cloudsColor] forState:UIControlStateNormal];
             [btn setTitleColor:[UIColor cloudsColor] forState:UIControlStateHighlighted];
-            btn.tag = (row - 1) * 3 + col;
-            [btn setTitle:[NSString stringWithFormat:@"%d", btn.tag] forState:UIControlStateNormal];
+//            btn.tag = (row - 1) * 3 + col;
+            btn.tag = (3 - row) * 3 + col;
+            [btn setTitle:[NSString stringWithFormat:@"%d", (int)btn.tag] forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(numberButtonHandler:) forControlEvents:UIControlEventTouchUpInside];
         
             [[self view] addSubview:btn];
@@ -239,10 +259,10 @@ SystemSoundID soundID;
 }
 
 - (void)updatePayment {
-    _payment.text = [NSString stringWithFormat:@"%d", currentInput];
+    _payment.text = [Helper setToCurrency:currentInput];
 }
 
 - (void)updateChanges {
-    _change.text  = [NSString stringWithFormat:@"%d", currentChanges];
+    _change.text  = [Helper setToCurrency:currentChanges];
 }
 @end

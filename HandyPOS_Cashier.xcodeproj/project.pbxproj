@@ -20,6 +20,9 @@
 		6773709E1B6AE99F00E0F020 /* HandyPOS_Cashier.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6773709C1B6AE99F00E0F020 /* HandyPOS_Cashier.xcdatamodeld */; };
 		677370A01B6AE99F00E0F020 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6773709F1B6AE99F00E0F020 /* Assets.xcassets */; };
 		677370A31B6AE99F00E0F020 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 677370A11B6AE99F00E0F020 /* LaunchScreen.storyboard */; };
+		677F4C891B70442600FD39A9 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 677F4C881B70442600FD39A9 /* Helper.m */; };
+		677F4C8C1B705E3000FD39A9 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 677F4C8B1B705E3000FD39A9 /* Transaction.m */; };
+		677F4C8F1B705F0700FD39A9 /* Payment.m in Sources */ = {isa = PBXBuildFile; fileRef = 677F4C8E1B705F0700FD39A9 /* Payment.m */; };
 		678047F11B6B34D6001C1A21 /* Receipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 678047F01B6B34D6001C1A21 /* Receipt.m */; };
 		67E664C31B6B026700BCBD9A /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E664C21B6B026700BCBD9A /* ExternalAccessory.framework */; };
 /* End PBXBuildFile section */
@@ -46,6 +49,12 @@
 		6773709F1B6AE99F00E0F020 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		677370A21B6AE99F00E0F020 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		677370A41B6AE99F00E0F020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		677F4C871B70442600FD39A9 /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
+		677F4C881B70442600FD39A9 /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
+		677F4C8A1B705E3000FD39A9 /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
+		677F4C8B1B705E3000FD39A9 /* Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
+		677F4C8D1B705F0700FD39A9 /* Payment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Payment.h; sourceTree = "<group>"; };
+		677F4C8E1B705F0700FD39A9 /* Payment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Payment.m; sourceTree = "<group>"; };
 		678047EF1B6B34D6001C1A21 /* Receipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Receipt.h; sourceTree = "<group>"; };
 		678047F01B6B34D6001C1A21 /* Receipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Receipt.m; sourceTree = "<group>"; };
 		67E664C21B6B026700BCBD9A /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
@@ -113,6 +122,7 @@
 		6773708F1B6AE99F00E0F020 /* HandyPOS_Cashier */ = {
 			isa = PBXGroup;
 			children = (
+				677F4C861B70440800FD39A9 /* Helpers */,
 				676361141B6F5C940095071F /* Resources */,
 				678047EE1B6B34B8001C1A21 /* Models */,
 				67307FC11B6B118E00B9ED26 /* DB */,
@@ -141,11 +151,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		677F4C861B70440800FD39A9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				677F4C871B70442600FD39A9 /* Helper.h */,
+				677F4C881B70442600FD39A9 /* Helper.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		678047EE1B6B34B8001C1A21 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				678047EF1B6B34D6001C1A21 /* Receipt.h */,
 				678047F01B6B34D6001C1A21 /* Receipt.m */,
+				677F4C8A1B705E3000FD39A9 /* Transaction.h */,
+				677F4C8B1B705E3000FD39A9 /* Transaction.m */,
+				677F4C8D1B705F0700FD39A9 /* Payment.h */,
+				677F4C8E1B705F0700FD39A9 /* Payment.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -279,10 +302,13 @@
 				676361111B6F22A70095071F /* PayController.m in Sources */,
 				677370981B6AE99F00E0F020 /* Home.m in Sources */,
 				6773709E1B6AE99F00E0F020 /* HandyPOS_Cashier.xcdatamodeld in Sources */,
+				677F4C8F1B705F0700FD39A9 /* Payment.m in Sources */,
 				677370951B6AE99F00E0F020 /* AppDelegate.m in Sources */,
 				673482851B6B052C000D3DE5 /* NetworkManager.m in Sources */,
 				677370921B6AE99F00E0F020 /* main.m in Sources */,
 				678047F11B6B34D6001C1A21 /* Receipt.m in Sources */,
+				677F4C891B70442600FD39A9 /* Helper.m in Sources */,
+				677F4C8C1B705E3000FD39A9 /* Transaction.m in Sources */,
 				67307FC41B6B13A800B9ED26 /* DBHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

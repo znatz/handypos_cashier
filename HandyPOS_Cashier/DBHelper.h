@@ -8,9 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import <FMDatabase.h>
+#import "Payment.h"
+#import "Transaction.h"
 
 @interface DBHelper : NSObject
+
++ (void) prepareTransactionDatabase ;
+
 + (FMDatabase *) getDBFromFile : (NSString *) filename ;
 + (NSMutableArray *) getReceiptByReceiptNo : (NSString *) i ;
 + (NSMutableArray *) getReceiptByTableNo : (NSString *) i ;
++(NSMutableArray *) getAllReceiptNumberInTable : (NSString *) i ;
 @end

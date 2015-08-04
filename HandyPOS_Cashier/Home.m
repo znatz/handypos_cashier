@@ -7,6 +7,7 @@
 //
 
 #import "Home.h"
+#import "Helper.h"
 #import "NetworkManager.h"
 #import "DBHelper.h"
 #import "Receipt.h"
@@ -54,6 +55,7 @@ NSMutableArray * receipt ;
     _receiptContents.delegate   = self;
     _receiptContents.hidden     = YES;
     _titleLabel.text            = @"検索";
+    _titleLabel.numberOfLines   = 0; // multiple lines ok
     
     /* Sound Setup */
     path=[[NSBundle mainBundle]pathForResource:@"click" ofType:@"wav"];
@@ -74,7 +76,7 @@ NSMutableArray * receipt ;
     receipt = [[NSMutableArray alloc] init];
     receipt = functionButton.tag == 0 ? [DBHelper getReceiptByReceiptNo:_receiptNO.text] : [DBHelper getReceiptByTableNo:_tableNO.text];
     if (receipt.count > 0) {
-        [self showResult] ;
+        [self showResult:functionButton.tag] ;
     } else {
         UIAlertView * av = [ [UIAlertView alloc]
                             initWithTitle : nil
@@ -91,10 +93,33 @@ NSMutableArray * receipt ;
 }
 
 /* Show List Handler ---------------------------*/
-- (void) showResult {
+/* 
+    btnTag :    0 => search by receiptNo
+                1 => search by tableNO
+ */
+- (void) showResult:(NSInteger) btnTag {
+    Receipt * r = receipt[0];
+    if (btnTag == 0) {
+        NSString * firstLine            = @"レシート : ";
+        firstLine                       = [firstLine rightJustify:18 with:@" "];
+        firstLine                       = [firstLine:r.receiptNo, nil];
+        _titleLabel.text                = firstLine;
+    } else {
+        NSString * firstLine            = @"テーブル : ";
+        firstLine                       = [firstLine rightJustify:18 with:@" "];
+        firstLine                       = [firstLine:r.tableNO, nil];
+        NSString * secondLine           = @"レシート : ";
+        secondLine                      = [secondLine rightJustify:18 with:@" "];
+        NSMutableArray * receiptsNumberInTable = [DBHelper getAllReceiptNumberInTable:r.tableNO];
+        for (NSString * number in receiptsNumberInTable) {
+            secondLine      = [[secondLine:number, nil]:@", ", nil];
+        }
+        secondLine      = [secondLine chop];
+        secondLine      = [secondLine chop];
+        _titleLabel.text    = [[firstLine:@"\r\n", nil]:secondLine, nil];
+    }
     _tableNO.hidden    = YES;
     _receiptNO.hidden  = YES;
-    _titleLabel.text   = @"レシート";
     [_receiptNO resignFirstResponder];
     [_tableNO resignFirstResponder];
     
@@ -153,7 +178,7 @@ NSMutableArray * receipt ;
 
 
 - (NSString *) getTotalPriceFromReceipt:(NSMutableArray *) rs {
-    NSString * result = [NSString stringWithFormat:@"合計：%@", [self setPrice:[self getRawTotalPriceFromReceipt:rs]]];
+    NSString * result = [NSString stringWithFormat:@"合計：%@", [Helper setToCurrency:[self getRawTotalPriceFromReceipt:rs]]];
     result = [result rightJustify:30 with:@" "];
     return result;
 }
@@ -224,23 +249,12 @@ NSMutableArray * receipt ;
     Receipt * eachReceipt   = receipt[indexPath.row];
     cell.textLabel.text     = eachReceipt.goodsTitle;
     
-    NSString * priceXcount  = [NSString stringWithFormat:@"%@ X", [self setPrice:eachReceipt.price]];
+    NSString * priceXcount  = [NSString stringWithFormat:@"%@ X", [Helper setToCurrency:eachReceipt.price]];
     priceXcount = [priceXcount rightJustify:50 with:@" "];
     priceXcount = [NSString stringWithFormat:@"%@%d", priceXcount, eachReceipt.kosu];
     
     cell.detailTextLabel.text = priceXcount;
     return cell;
 }
-
--(NSString *)setPrice : (int) p {
-    NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
-    [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"ja-JP"]];
-    [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-    [formatter setCurrencySymbol:@"￥"];
-    NSString * result = [formatter stringFromNumber:[[NSNumber alloc] initWithInt:p]];
-    return result;
-}
-
-
 
 @end

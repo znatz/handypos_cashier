@@ -9,11 +9,43 @@
 #import "DBHelper.h"
 #import "NSString+Ruby.h"
 #import "Receipt.h"
+#import "Payment.h"
+#import "Transaction.h"
 #import <FMDatabase.h>
 
-#define DB_FILE         @"Cashier.sqlite"
+#define DB_FILE                 @"Cashier.sqlite"
+#define DB_TRANSACTION_FILE     @"Transaction.sqlite"
 
 @implementation DBHelper
+
+/* ------------------------------------------------------------ Handle Payment ----------------------------------------- */
++ (void) prepareTransactionDatabase {
+    FMDatabase * db = [self getDBFromFile:DB_TRANSACTION_FILE];
+    [db open];
+    [db executeStatements:@"CREATE TABLE IF NOT EXISTS transactions (id INTEGER PRIMARY KEY AUTOINCREMENT, receiptNo TEXT, payment_id INTEGER);"];
+    [db close];
+    [db open];
+    [db executeStatements:@"CREATE TABLE IF NOT EXISTS payments(id INTEGER PRIMARY KEY AUTOINCREMENT, price INTEGER, payment INTEGER, changes INTEGER, time TEXT);"];
+    [db close];
+}
+
++ (void) recordPayment : (Payment *) p withReceiptNumbers : (NSMutableArray *) rns {
+    FMDatabase * db = [self getDBFromFile:DB_TRANSACTION_FILE];
+    NSString * query;
+    query = [NSString stringWithFormat:@"INSERT INTO payments (price, payment, changes, time) VALUES (%d, %d, %d, %@)", p.price, p.payment, p.price, p.time];
+    [db open];
+    [db executeStatements:query];
+    [db close];
+    
+    int payment_id = (int)[db lastInsertRowId];
+    for (NSString * rn in rns) {
+        query = [NSString stringWithFormat:@"INSERT INTO transactions (receiptNo, payment_id) VALUES (%@, %d)", rn, payment_id];
+        [db open];
+        [db executeStatements:query];
+        [db close];
+    }
+}
+/* ------------------------------------------------------------ Handle Receipt ----------------------------------------- */
 + (FMDatabase *) getDBFromFile : (NSString *) filename {
     NSArray *paths  =   NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *dir   =   [paths objectAtIndex:0];
@@ -71,4 +103,20 @@
     return receipts;
 }
 
++(NSMutableArray *) getAllReceiptNumberInTable : (NSString *) i {
+    
+    NSMutableArray * receiptNumbers = [[NSMutableArray alloc] init];
+    FMDatabase * db = [self getDBFromFile:DB_FILE];
+    FMResultSet * result;
+    NSString * query = [NSString stringWithFormat:@"SELECT DISTINCT receiptNo FROM receipt_lines WHERE tableNO = %@", i ];
+    
+    [db open];
+    result = [db executeQuery:query];
+    while ([result next]) {
+        [receiptNumbers addObject:[result stringForColumn:@"receiptNo"]];
+    }
+    [db close];
+    return receiptNumbers;
+    
+}
 @end

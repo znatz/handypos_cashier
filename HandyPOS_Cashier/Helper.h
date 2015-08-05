@@ -12,4 +12,5 @@
 
 + (NSString *)setToCurrency : (int) c ;
 + (NSString *)getCurrentTime ;
++ (NSString *)getUUID ;
 @end

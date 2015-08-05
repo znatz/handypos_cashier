@@ -20,26 +20,26 @@
 
 /* ------------------------------------------------------------ Handle Payment ----------------------------------------- */
 + (void) prepareTransactionDatabase {
+    [self cleanUPPaymentRecord];
     FMDatabase * db = [self getDBFromFile:DB_TRANSACTION_FILE];
     [db open];
     [db executeStatements:@"CREATE TABLE IF NOT EXISTS transactions (id INTEGER PRIMARY KEY AUTOINCREMENT, receiptNo TEXT, payment_id INTEGER);"];
     [db close];
     [db open];
-    [db executeStatements:@"CREATE TABLE IF NOT EXISTS payments(id INTEGER PRIMARY KEY AUTOINCREMENT, price INTEGER, payment INTEGER, changes INTEGER, time TEXT);"];
+    [db executeStatements:@"CREATE TABLE IF NOT EXISTS payments(id INTEGER PRIMARY KEY AUTOINCREMENT, price INTEGER, payment INTEGER, changes INTEGER, time TEXT, uuid TEXT);"];
     [db close];
 }
 
 + (void) recordPayment : (Payment *) p withReceiptNumbers : (NSMutableArray *) rns {
     FMDatabase * db = [self getDBFromFile:DB_TRANSACTION_FILE];
     NSString * query;
-    query = [NSString stringWithFormat:@"INSERT INTO payments (price, payment, changes, time) VALUES (%d, %d, %d, %@)", p.price, p.payment, p.price, p.time];
+    query = [NSString stringWithFormat:@"INSERT INTO payments (price, payment, changes, time, uuid) VALUES (%d, %d, %d, %@, '%@')", p.price, p.payment, p.changes, p.time, p.uuid];
     [db open];
     [db executeStatements:query];
-    int payment_id = (int)[db lastInsertRowId];
     [db close];
     
     for (NSString * rn in rns) {
-        query = [NSString stringWithFormat:@"INSERT INTO transactions (receiptNo, payment_id) VALUES (%@, %d)", rn, payment_id];
+        query = [NSString stringWithFormat:@"INSERT INTO transactions (receiptNo, payment_id) VALUES (%@, '%@')", rn, p.uuid];
         [db open];
         [db executeStatements:query];
         [db close];
@@ -57,6 +57,7 @@
     [db open];
     [db executeStatements:query];
     [db close];
+    return;
     
 }
 

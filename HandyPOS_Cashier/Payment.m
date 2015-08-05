@@ -14,6 +14,7 @@
                 payment : (int) pmnt
                 changes : (int) c
                    time : (NSString *) t
+                   uuid : (NSString *)u
 {
     self = [super init];
     self.paymentID = i;
@@ -21,6 +22,7 @@
     self.payment   = pmnt;
     self.changes   = c;
     self.time      = t;
+    self.uuid      = u;
     return self;
 }
 

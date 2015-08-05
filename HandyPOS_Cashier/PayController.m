@@ -60,7 +60,7 @@ SystemSoundID soundID;
     [self validation];
     [DBHelper prepareTransactionDatabase];
     // id is dummnynow
-    Payment * payment = [[Payment alloc] initWithID:0 price:_receivable_amount payment:currentInput changes:currentChanges time:[Helper getCurrentTime]];
+    Payment * payment = [[Payment alloc] initWithID:0 price:_receivable_amount payment:currentInput changes:currentChanges time:[Helper getCurrentTime] uuid:[Helper getUUID]];
     [DBHelper recordPayment:payment withReceiptNumbers:_receiptNumbers];
     [NetworkManager uploadPaymentRecord];
     [DBHelper cleanUPPaymentRecord];

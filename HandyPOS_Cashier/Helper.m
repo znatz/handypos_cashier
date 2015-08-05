@@ -25,4 +25,7 @@
 }
 
 
++ (NSString *)getUUID {
+    return [[NSUUID UUID] UUIDString];
+}
 @end

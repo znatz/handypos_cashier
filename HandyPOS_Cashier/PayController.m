@@ -59,13 +59,12 @@ SystemSoundID soundID;
     
     [self validation];
     [DBHelper prepareTransactionDatabase];
-    // id is dummnynow
-    Payment * payment = [[Payment alloc] initWithID:0 price:_receivable_amount payment:currentInput changes:currentChanges time:[Helper getCurrentTime] uuid:[Helper getUUID]];
+    Payment * payment = [[Payment alloc] initWithID:0 price:_receivable_amount payment:currentInput changes:currentChanges time:[Helper getCurrentTime] UUID:[Helper getUUID]];
     [DBHelper recordPayment:payment withReceiptNumbers:_receiptNumbers];
-    [NetworkManager uploadPaymentRecord];
-    [DBHelper cleanUPPaymentRecord];
     Home * homeScene = [[self storyboard] instantiateViewControllerWithIdentifier:@"home_scene"];
     [self presentViewController:homeScene animated:YES completion:nil];
+    [NetworkManager uploadPaymentRecord];
+    [DBHelper cleanUPPaymentRecord];
 }
 
 -(IBAction)numberButtonHandler:(id)sender {

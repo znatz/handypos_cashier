@@ -33,13 +33,13 @@
 + (void) recordPayment : (Payment *) p withReceiptNumbers : (NSMutableArray *) rns {
     FMDatabase * db = [self getDBFromFile:DB_TRANSACTION_FILE];
     NSString * query;
-    query = [NSString stringWithFormat:@"INSERT INTO payments (price, payment, changes, time, uuid) VALUES (%d, %d, %d, '%@', '%@')", p.price, p.payment, p.changes, p.time, p.uuid];
+    query = [NSString stringWithFormat:@"INSERT INTO payments (price, payment, changes, time, uuid) VALUES (%d, %d, %d, '%@', '%@')", p.price, p.payment, p.changes, p.time, p.UUID];
     [db open];
     [db executeStatements:query];
     [db close];
     
     for (NSString * rn in rns) {
-        query = [NSString stringWithFormat:@"INSERT INTO transactions (receiptNo, payment_id) VALUES (%@, '%@')", rn, p.uuid];
+        query = [NSString stringWithFormat:@"INSERT INTO transactions (receiptNo, payment_id) VALUES (%@, '%@')", rn, p.UUID];
         [db open];
         [db executeStatements:query];
         [db close];

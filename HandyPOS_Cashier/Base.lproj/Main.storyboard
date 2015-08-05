@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1je-Pt-Can">
-                                <rect key="frame" x="20" y="0.0" width="560" height="80"/>
+                                <rect key="frame" x="20" y="10" width="560" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="zKb-Bq-byz"/>
                                 </constraints>
@@ -28,7 +28,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="レシート番号で精算" borderStyle="roundedRect" placeholder="レシート番号で検索" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8az-hQ-oZf" userLabel="receiptNO">
-                                <rect key="frame" x="25" y="88" width="550" height="50"/>
+                                <rect key="frame" x="25" y="98" width="550" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="xBe-qa-3as"/>
                                 </constraints>
@@ -36,7 +36,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="テーブル番号で精算" borderStyle="roundedRect" placeholder="テーブル番号で検索" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0m4-Oz-1VR" userLabel="tableNO">
-                                <rect key="frame" x="25" y="142" width="550" height="50"/>
+                                <rect key="frame" x="25" y="152" width="550" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="U1h-hQ-7Z7"/>
                                 </constraints>
@@ -44,7 +44,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="ReJ-eM-FXy" userLabel="receiptContents">
-                                <rect key="frame" x="20" y="78" width="565" height="517"/>
+                                <rect key="frame" x="20" y="88" width="565" height="507"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexTrackingBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -58,7 +58,7 @@
                             <constraint firstItem="0m4-Oz-1VR" firstAttribute="top" secondItem="8az-hQ-oZf" secondAttribute="bottom" constant="4" id="Lla-vf-TLS"/>
                             <constraint firstItem="8az-hQ-oZf" firstAttribute="top" secondItem="1je-Pt-Can" secondAttribute="bottom" constant="8" id="Szc-Vd-ajo"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ReJ-eM-FXy" secondAttribute="bottom" constant="5" id="W5b-xV-wzc"/>
-                            <constraint firstItem="1je-Pt-Can" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="XcP-I6-fmf"/>
+                            <constraint firstItem="1je-Pt-Can" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="10" id="XcP-I6-fmf"/>
                             <constraint firstItem="0m4-Oz-1VR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="5" id="Z6Q-uX-DTx"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8az-hQ-oZf" secondAttribute="trailing" constant="5" id="jb1-If-994"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0m4-Oz-1VR" secondAttribute="trailing" constant="5" id="mKx-BP-oU2"/>

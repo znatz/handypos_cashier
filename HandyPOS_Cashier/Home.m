@@ -33,8 +33,8 @@ NSMutableArray * receipt;
 NSMutableArray * receiptNumbers;
 
 - (void)viewDidLoad {
-    [NetworkManager fetchAllDB];
     count_of_receipt_line       = receipt.count;
+    [NetworkManager fetchAllDB];
     [super viewDidLoad];
     _receiptNO.inputView = ({
         APNumberPad *numberPad  = [APNumberPad numberPadWithDelegate:self];
@@ -87,7 +87,7 @@ NSMutableArray * receiptNumbers;
                             otherButtonTitles : nil, nil];
         [av show];
         count_of_receipt_line = 0;
-        [NetworkManager fetchAllDB];
+        _titleLabel.text = [NetworkManager fetchAllDB];
     }
     
     [_receiptContents reloadData];
@@ -134,7 +134,7 @@ NSMutableArray * receiptNumbers;
 
 /* Retrieve Database Handler -------------------*/
 - (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated {
-    [NetworkManager fetchAllDB];
+    _titleLabel.text = [NetworkManager fetchAllDB];
 }
 
 /* "Back" Button Handler ----------------------*/
@@ -150,7 +150,7 @@ NSMutableArray * receiptNumbers;
     receipt                 = nil;
     [_receiptContents reloadData];
     
-    [NetworkManager fetchAllDB];
+    _titleLabel.text = [NetworkManager fetchAllDB];
 }
 
 /* "Pay" Button Handler ------------------------*/

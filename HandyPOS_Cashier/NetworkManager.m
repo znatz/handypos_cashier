@@ -11,48 +11,73 @@
 #import "DBHelper.h"
 
 @implementation NetworkManager
+
++ (NSString *) dbValidation : (NSString *)dbfileName {
+    NSString * documentDir  = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    NSString * downloadDestinationPath = [documentDir stringByAppendingPathComponent:dbfileName];
+    NSFileManager* fm = [NSFileManager defaultManager];
+    
+    NSData *myData = [fm contentsAtPath:downloadDestinationPath];
+    if([myData length] > 30) {
+        NSRange range = {24, 4};
+        NSData *data2 = [myData subdataWithRange:range];
+        return [data2 description];
+    } else {
+        return @"000000";
+    }
+}
+
++ (void) fetchDBFile : (NSString *)dbfileName
+{
+    NSString * dbURI        = @"http://posco-cloud.sakura.ne.jp/TEST/IOS/OrderSystem/app/database";
+    NSString * documentDir  = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    NSString * downloadDestinationPath = [documentDir stringByAppendingPathComponent:dbfileName];
+    NSURL    * url;
+    NSURLRequest * myRequest;
+    AFHTTPRequestOperation * operation;
+    
+    url        = [NSURL
+                  URLWithString : [NSString stringWithFormat:@"%@/%@", dbURI, dbfileName]];
+    
+    myRequest  = [NSURLRequest
+                               requestWithURL : url
+                               cachePolicy : NSURLRequestReloadIgnoringLocalCacheData
+                               timeoutInterval : 30.0];
+    
+    operation = [[AFHTTPRequestOperation alloc] initWithRequest:myRequest];
+    
+    operation.outputStream = [NSOutputStream outputStreamToFileAtPath:downloadDestinationPath append:NO];
+    
+    
+    [operation
+     setCompletionBlockWithSuccess : ^(AFHTTPRequestOperation *operation, id responseObject)
+    {
+        NSLog(@"ダウンロード成功！ dbの保存先:%@", downloadDestinationPath);
+    }
+     failure : ^(AFHTTPRequestOperation *operation, NSError *error)
+    {
+        NSLog(@"Error ->: %@", [error localizedDescription]);
+    }
+     ];
+    
+    [operation start];
+    [operation waitUntilFinished];
+}
  
- + (void) fetchDBFile : (NSString *)dbfileName
- {
-     NSFileManager * fileManager = [NSFileManager defaultManager];
-     NSString * dbURI        = @"http://posco-cloud.sakura.ne.jp/TEST/IOS/OrderSystem/app/database";
-     NSString * documentDir  = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-     NSString * downloadDestinationPath = [documentDir stringByAppendingPathComponent:dbfileName];
-     NSError *error;
-     [fileManager removeItemAtPath:downloadDestinationPath error:&error];
-     NSURL    * url;
-     NSURLRequest * myRequest;
-     AFHTTPRequestOperation * operation;
-     
-     url        = [NSURL
-                   URLWithString : [NSString stringWithFormat:@"%@/%@", dbURI, dbfileName]];
-     
-     myRequest  = [NSURLRequest
-                                requestWithURL : url
-                                cachePolicy : NSURLRequestReloadIgnoringLocalCacheData
-                                timeoutInterval : 30.0];
-     
-     operation = [[AFHTTPRequestOperation alloc] initWithRequest:myRequest];
-     
-     operation.outputStream = [NSOutputStream outputStreamToFileAtPath:downloadDestinationPath append:NO];
-     
-     
-     [operation
-      setCompletionBlockWithSuccess : ^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSLog(@"ダウンロード成功！ dbの保存先:%@", downloadDestinationPath);
-     }
-      failure : ^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"Error ->: %@", [error localizedDescription]);
-     }
-      ];
-     
-     [operation start];
- }
- 
-+ (void) fetchAllDB {
-     [self fetchDBFile:@"Cashier.sqlite"];
++ (NSString *) fetchAllDB {
+    NSString * result = [[NSString alloc] init];
+    NSString * previousDateOfDB = [self dbValidation:@"Cashier.sqlite"];
+    [self fetchDBFile:@"Cashier.sqlite"];
+    NSString * updateDateOfDB = [self dbValidation:@"Cashier.sqlite"];
+    if([previousDateOfDB isEqual:updateDateOfDB]) {
+        NSRange range = {5,4};
+        updateDateOfDB =[updateDateOfDB substringWithRange:range];
+        result = [NSString stringWithFormat:@"データーベースバージョン：\r\n%@", updateDateOfDB];
+        return result;
+    } else {
+        result = @"更新しました。";
+        return result;
+    }
 }
 
 + (void) uploadPaymentRecord {

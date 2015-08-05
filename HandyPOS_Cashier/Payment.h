@@ -14,11 +14,11 @@
 @property int payment;
 @property int changes;
 @property NSString * time;
-@property NSString * uuid;
+@property NSString * UUID;
 -(Payment *) initWithID : (int) i
                   price : (int) p
                 payment : (int) pmnt
                 changes : (int) c
                    time : (NSString *) t
-                   uuid : (NSString *) u;
+                   UUID : (NSString *) u;
 @end

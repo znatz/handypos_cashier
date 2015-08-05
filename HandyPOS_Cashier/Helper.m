@@ -20,8 +20,11 @@
 }
 
 + (NSString *)getCurrentTime {
-    NSString * timestamp = [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970] * 1000];
-    return timestamp;
+//    NSString * timestamp = [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970] * 1000];
+    NSDate * date = [NSDate date];
+    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyy年MM月dd日 HH:mm:ss";
+    return [formatter stringFromDate:date];
 }
 
 

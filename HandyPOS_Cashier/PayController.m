@@ -11,8 +11,10 @@
 #import "DBHelper.h"
 #import "Helper.h"
 #import "NetworkManager.h"
+#import "ReceiptPrinter.h"
 #import "Payment.h"
 #import "Transaction.h"
+#import "CMP20DRIVER.h"
 
 #import <FlatUIKit/FlatUIKit.h>
 #import <AudioToolbox/AudioToolbox.h>
@@ -58,19 +60,25 @@ SystemSoundID soundID;
     AudioServicesPlaySystemSound(soundID);
     
     BOOL result = NO;
-    [self validation];
-    [DBHelper prepareTransactionDatabase];
-    Payment * payment = [[Payment alloc] initWithID:0 price:_receivable_amount payment:currentInput changes:currentChanges time:[Helper getCurrentTime] UUID:[Helper getUUID]];
-    [DBHelper recordPayment:payment withReceiptNumbers:_receiptNumbers];
-    for (NSString * receiptNo in _receiptNumbers) {
-        result = [DBHelper removeReceiptByReceiptNo:receiptNo];
+    if ([self validation]) {
+        
+        [DBHelper prepareTransactionDatabase];
+        Payment * payment = [[Payment alloc] initWithID:0 price:_receivable_amount payment:currentInput changes:currentChanges time:[Helper getCurrentTime] UUID:[Helper getUUID]];
+        [DBHelper recordPayment:payment withReceiptNumbers:_receiptNumbers];
+        
+        [ReceiptPrinter preparePrinter:_receipts withPayment:payment];
+        
+        for (NSString * receiptNo in _receiptNumbers) {
+            result = [DBHelper removeReceiptByReceiptNo:receiptNo];
+        }
+        if (result) {
+            Home * homeScene = [[self storyboard] instantiateViewControllerWithIdentifier:@"home_scene"];
+            [self presentViewController:homeScene animated:YES completion:nil];
+            [NetworkManager uploadPaymentRecord];
+            [DBHelper cleanUPPaymentRecord];
+        }
     }
-    if (result) {
-        Home * homeScene = [[self storyboard] instantiateViewControllerWithIdentifier:@"home_scene"];
-        [self presentViewController:homeScene animated:YES completion:nil];
-        [NetworkManager uploadPaymentRecord];
-        [DBHelper cleanUPPaymentRecord];
-    }
+
 }
 
 -(IBAction)numberButtonHandler:(id)sender {
@@ -139,6 +147,7 @@ SystemSoundID soundID;
 }
 
 
+/* UI Setup     */
 - (void) appendButton {
     
     CGFloat leftMargin      = 18.0f;

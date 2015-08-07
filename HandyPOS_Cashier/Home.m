@@ -16,6 +16,8 @@
 #import <FlatUIKit/FlatUIKit.h>
 #import <AudioToolbox/AudioToolbox.h>
 
+#import "ReceiptPrinter.h"
+
 @interface Home () <APNumberPadDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UITextField *receiptNO;
@@ -60,6 +62,7 @@ NSMutableArray * receiptNumbers;
     
     /* Sound Setup */
     path=[[NSBundle mainBundle]pathForResource:@"click" ofType:@"wav"];
+    NSLog(@"%@", path);
     url=[NSURL fileURLWithPath:path];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)url,&home_soundID);
     
@@ -161,6 +164,7 @@ NSMutableArray * receiptNumbers;
     PayController * payScene = [[self storyboard] instantiateViewControllerWithIdentifier:@"pay_scene"];
     payScene.receivable_amount = [self getRawTotalPriceFromReceipt:receipt];
     payScene.receiptNumbers    = receiptNumbers;
+    payScene.receipts          = receipt;
     [self presentViewController:payScene animated:YES completion:nil];
 }
 

@@ -94,6 +94,15 @@
     return receipts;
 }
 
++(BOOL)removeReceiptByReceiptNo : (NSString *) i {
+    FMDatabase * db = [self getDBFromFile:DB_FILE];
+    [db open];
+    NSString * query = [NSString stringWithFormat:@"DELETE FROM receipt_lines WHERE receiptNO = %@", i];
+    BOOL result = [db executeStatements:query];
+    [db close];
+    return result;
+}
+
 +(NSMutableArray *) getReceiptByTableNo : (NSString *) i {
     
     Receipt * r;

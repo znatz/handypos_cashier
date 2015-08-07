@@ -34,7 +34,7 @@ NSMutableArray * receiptNumbers;
 
 - (void)viewDidLoad {
     count_of_receipt_line       = receipt.count;
-    [NetworkManager fetchAllDB];
+//    [NetworkManager fetchAllDB];
     [super viewDidLoad];
     _receiptNO.inputView = ({
         APNumberPad *numberPad  = [APNumberPad numberPadWithDelegate:self];

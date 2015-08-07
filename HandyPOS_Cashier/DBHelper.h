@@ -20,5 +20,6 @@
 + (FMDatabase *) getDBFromFile : (NSString *) filename ;
 + (NSMutableArray *) getReceiptByReceiptNo : (NSString *) i ;
 + (NSMutableArray *) getReceiptByTableNo : (NSString *) i ;
-+(NSMutableArray *) getAllReceiptNumberInTable : (NSString *) i ;
++ (NSMutableArray *) getAllReceiptNumberInTable : (NSString *) i ;
++ (BOOL) removeReceiptByReceiptNo : (NSString *) i ;
 @end

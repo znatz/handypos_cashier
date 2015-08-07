@@ -57,14 +57,20 @@ SystemSoundID soundID;
     
     AudioServicesPlaySystemSound(soundID);
     
+    BOOL result = NO;
     [self validation];
     [DBHelper prepareTransactionDatabase];
     Payment * payment = [[Payment alloc] initWithID:0 price:_receivable_amount payment:currentInput changes:currentChanges time:[Helper getCurrentTime] UUID:[Helper getUUID]];
     [DBHelper recordPayment:payment withReceiptNumbers:_receiptNumbers];
-    Home * homeScene = [[self storyboard] instantiateViewControllerWithIdentifier:@"home_scene"];
-    [self presentViewController:homeScene animated:YES completion:nil];
-    [NetworkManager uploadPaymentRecord];
-    [DBHelper cleanUPPaymentRecord];
+    for (NSString * receiptNo in _receiptNumbers) {
+        result = [DBHelper removeReceiptByReceiptNo:receiptNo];
+    }
+    if (result) {
+        Home * homeScene = [[self storyboard] instantiateViewControllerWithIdentifier:@"home_scene"];
+        [self presentViewController:homeScene animated:YES completion:nil];
+        [NetworkManager uploadPaymentRecord];
+        [DBHelper cleanUPPaymentRecord];
+    }
 }
 
 -(IBAction)numberButtonHandler:(id)sender {

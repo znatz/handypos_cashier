@@ -18,33 +18,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="IPアドレスを入力ください" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ih9-9l-onv" userLabel="ReceiptIP" customClass="FUITextField">
-                                <rect key="frame" x="25" y="30" width="550" height="50"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="IPアドレスを入力ください" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Ih9-9l-onv" userLabel="ReceiptIP" customClass="FUITextField">
+                                <rect key="frame" x="25" y="70" width="550" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="ve3-gz-O4o"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" keyboardAppearance="alert"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="098-pu-s9U" customClass="FUIButton">
-                                <rect key="frame" x="25" y="565" width="550" height="30"/>
+                                <rect key="frame" x="25" y="545" width="550" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="KV0-7Z-3da"/>
+                                    <constraint firstAttribute="height" constant="50" id="KV0-7Z-3da"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ISU-kU-BKS" userLabel="Shops&amp;Employees">
-                                <rect key="frame" x="25" y="85" width="550" height="475"/>
+                                <rect key="frame" x="25" y="125" width="550" height="415"/>
                             </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="63j-hF-fMl" firstAttribute="top" secondItem="098-pu-s9U" secondAttribute="bottom" constant="5" id="41o-BJ-trd"/>
                             <constraint firstItem="098-pu-s9U" firstAttribute="leading" secondItem="hqY-kE-F37" secondAttribute="leadingMargin" constant="5" id="47q-zv-94i"/>
                             <constraint firstItem="ISU-kU-BKS" firstAttribute="leading" secondItem="hqY-kE-F37" secondAttribute="leadingMargin" constant="5" id="BrC-SU-aC2"/>
                             <constraint firstItem="Ih9-9l-onv" firstAttribute="leading" secondItem="hqY-kE-F37" secondAttribute="leadingMargin" constant="5" id="NFk-yp-fjy"/>
                             <constraint firstItem="ISU-kU-BKS" firstAttribute="top" secondItem="Ih9-9l-onv" secondAttribute="bottom" constant="5" id="QHj-Y8-qGU"/>
-                            <constraint firstItem="Ih9-9l-onv" firstAttribute="top" secondItem="1GY-rZ-ppg" secondAttribute="bottom" constant="10" id="UYe-j6-vVd"/>
+                            <constraint firstItem="Ih9-9l-onv" firstAttribute="top" secondItem="1GY-rZ-ppg" secondAttribute="bottom" constant="50" id="UYe-j6-vVd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ih9-9l-onv" secondAttribute="trailing" constant="5" id="o9h-2Y-4W9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ISU-kU-BKS" secondAttribute="trailing" constant="5" id="rZt-TG-IPs"/>
                             <constraint firstAttribute="trailingMargin" secondItem="098-pu-s9U" secondAttribute="trailing" constant="5" id="tNr-qB-bO2"/>

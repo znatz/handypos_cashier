@@ -17,7 +17,11 @@
 
 +(void) preparePrinter : (NSMutableArray *) receipts withPayment : (Payment *) p {
     
-    CMP20DRIVER * printer = [[CMP20DRIVER alloc] initWithURL:@"192.168.1.231"];
+    NSUserDefaults * defaultSettings = [NSUserDefaults standardUserDefaults];
+    NSString * printerURL            = [defaultSettings objectForKey:@"printerURL"];
+    NSLog(@"%@", printerURL);
+//    CMP20DRIVER * printer = [[CMP20DRIVER alloc] initWithURL:@"192.168.1.231"];
+    CMP20DRIVER * printer = [[CMP20DRIVER alloc] initWithURL:printerURL];
     
     /* -------------------------------------- Print Header -------------------------------- */
     [printer printHeader];

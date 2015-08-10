@@ -12,7 +12,7 @@
 #import "Home.h"
 #import <FlatUIKit/FlatUIKit.h>
 
-@interface Setup () <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface Setup () <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet FUIButton *submit;
 @property (weak, nonatomic) IBOutlet FUITextField *receiptIP;
 @property (weak, nonatomic) IBOutlet UIPickerView *shops_employees_picker;
@@ -26,6 +26,12 @@ Shop           * defaultShop;
 Employee       * defaultEmployee;
 
 -(IBAction)submit:(id)sender {
+    
+    NSUserDefaults * defaultSettings = [NSUserDefaults standardUserDefaults];
+    NSString * printerURL            = @"192.168.1.231";
+    [defaultSettings setObject:printerURL forKey:@"printerURL"];
+    [defaultSettings synchronize];
+    
     Home * hv           = [self.storyboard instantiateViewControllerWithIdentifier:@"home_scene"];
     hv.shopName         = defaultShop.name;
     hv.employeeName     = defaultEmployee.name;
@@ -35,13 +41,12 @@ Employee       * defaultEmployee;
 - (void)viewDidLoad {
     [NetworkManager fetchDBFile:@"Master.sqlite"];
     allShops            = [DBHelper getAllShops];
-    defaultShop         = allShops[0]; //REMEMBER IT?
+    defaultShop         = allShops[0];
     allEmployees        = [DBHelper getAllEmployeesByShopID:defaultShop.shopID];
     defaultEmployee     = allEmployees[0];
-    [super viewDidLoad];
     [self uiSetup];
-    _shops_employees_picker.delegate    = self;
-    _shops_employees_picker.dataSource  = self;
+    
+    [super viewDidLoad];
     
 }
 
@@ -77,15 +82,39 @@ Employee       * defaultEmployee;
     }
 }
 
+- (void)tapHandler:(UIGestureRecognizer *)sender {
+    [_receiptIP resignFirstResponder];
+    NSLog(@"done");
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [_receiptIP resignFirstResponder];
+    return 0;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [_receiptIP resignFirstResponder];
+}
+
 -(void) uiSetup {
+    
+    UITapGestureRecognizer * tapRecogn = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapHandler:)];
+    tapRecogn.delegate                 = self;
+    self.view.userInteractionEnabled   = YES;
+    [self.view addGestureRecognizer:tapRecogn];
+    
     _submit.buttonColor = [UIColor turquoiseColor];
     _submit.shadowColor = [UIColor greenSeaColor];
     _submit.shadowHeight= 3.0f;
     _submit.titleLabel.font = [UIFont boldFlatFontOfSize:19];
     [_submit setTitleColor:[UIColor cloudsColor] forState:UIControlStateNormal];
     [_submit setTitleColor:[UIColor cloudsColor] forState:UIControlStateHighlighted];
-    [_submit setTitle:@"hi" forState:UIControlStateNormal];
+    [_submit setTitle:@"進む" forState:UIControlStateNormal];
     [_submit addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _shops_employees_picker.delegate    = self;
+    _shops_employees_picker.dataSource  = self;
+    _receiptIP.delegate                 = self;
 }
 
 - (void)didReceiveMemoryWarning {

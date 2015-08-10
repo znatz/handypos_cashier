@@ -68,21 +68,6 @@
     [self fetchDBFile:@"Cashier.sqlite"];
         NSString * result = @"";
         return result;
-//    
-//    NSString * result = [[NSString alloc] init];
-//    NSString * previousDateOfDB = [self dbValidation:@"Cashier.sqlite"];
-//    [self fetchDBFile:@"Cashier.sqlite"];
-//    NSString * updateDateOfDB = [self dbValidation:@"Cashier.sqlite"];
-//    if([previousDateOfDB isEqual:updateDateOfDB]) {
-//        NSRange range = {5,4};
-//        updateDateOfDB =[updateDateOfDB substringWithRange:range];
-//        result = [NSString stringWithFormat:@"データーベースバージョン：\r\n%@", updateDateOfDB];
-//        return result;
-//    } else {
-//        result = @"更新しました。";
-//        return result;
-//    }
-//    
 }
 
 + (void) uploadPaymentRecord {

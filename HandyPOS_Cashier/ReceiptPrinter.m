@@ -16,7 +16,10 @@
 @implementation ReceiptPrinter
 
 +(void) preparePrinter : (NSMutableArray *) receipts withPayment : (Payment *) p {
+    
     CMP20DRIVER * printer = [[CMP20DRIVER alloc] initWithURL:@"192.168.1.231"];
+    
+    /* -------------------------------------- Print Header -------------------------------- */
     [printer printHeader];
     
     /* -------------------------------------- Print Body -------------------------------- */
@@ -68,6 +71,7 @@
     
     /* --------------------------------------- Print Footer --------------------------*/
     [printer printTxtName:@"footer"];
+    
     [printer close];
 }
 

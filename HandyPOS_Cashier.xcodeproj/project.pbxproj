@@ -10,6 +10,7 @@
 		43A50574EAF22DAAF9848441 /* libPods-HandyPOS_Cashier.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 003BB8F8E758F3C826F4195A /* libPods-HandyPOS_Cashier.a */; };
 		67307FC41B6B13A800B9ED26 /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 67307FC31B6B13A800B9ED26 /* DBHelper.m */; };
 		673482851B6B052C000D3DE5 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 673482841B6B052C000D3DE5 /* NetworkManager.m */; };
+		67567DD31B78317C00425DD5 /* libCMP20DRIVER.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67567DD21B78317C00425DD5 /* libCMP20DRIVER.a */; };
 		676361111B6F22A70095071F /* PayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 676361101B6F22A70095071F /* PayController.m */; };
 		676361131B6F5B940095071F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 676361121B6F5B940095071F /* AudioToolbox.framework */; };
 		676361161B6F5CA80095071F /* click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 676361151B6F5CA80095071F /* click.wav */; };
@@ -26,7 +27,6 @@
 		678047F11B6B34D6001C1A21 /* Receipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 678047F01B6B34D6001C1A21 /* Receipt.m */; };
 		6790C5371B7466FD0018AFA3 /* libPrinter_160.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6790C5361B7466FD0018AFA3 /* libPrinter_160.a */; };
 		6790C5411B74749C0018AFA3 /* footer.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6790C5401B74749C0018AFA3 /* footer.txt */; settings = {ASSET_TAGS = (); }; };
-		6790C5451B7476BC0018AFA3 /* libCMP20DRIVER.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6790C5441B7476BC0018AFA3 /* libCMP20DRIVER.a */; };
 		67A5A19C1B748A0E0043DE95 /* ReceiptPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A5A19B1B748A0E0043DE95 /* ReceiptPrinter.m */; };
 		67E664C31B6B026700BCBD9A /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E664C21B6B026700BCBD9A /* ExternalAccessory.framework */; };
 /* End PBXBuildFile section */
@@ -38,6 +38,7 @@
 		67307FC31B6B13A800B9ED26 /* DBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHelper.m; sourceTree = "<group>"; };
 		673482831B6B052C000D3DE5 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		673482841B6B052C000D3DE5 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
+		67567DD21B78317C00425DD5 /* libCMP20DRIVER.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCMP20DRIVER.a; path = Library/libCMP20DRIVER.a; sourceTree = "<group>"; };
 		6763610F1B6F22A70095071F /* PayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayController.h; sourceTree = "<group>"; };
 		676361101B6F22A70095071F /* PayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayController.m; sourceTree = "<group>"; };
 		676361121B6F5B940095071F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -66,7 +67,6 @@
 		6790C5361B7466FD0018AFA3 /* libPrinter_160.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPrinter_160.a; path = ../../../libPrinter_160.a; sourceTree = "<group>"; };
 		6790C5401B74749C0018AFA3 /* footer.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = footer.txt; sourceTree = "<group>"; };
 		6790C5431B7475CD0018AFA3 /* CMP20DRIVER.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMP20DRIVER.h; sourceTree = "<group>"; };
-		6790C5441B7476BC0018AFA3 /* libCMP20DRIVER.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCMP20DRIVER.a; path = ../../../libCMP20DRIVER.a; sourceTree = "<group>"; };
 		67A5A19A1B748A0E0043DE95 /* ReceiptPrinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptPrinter.h; sourceTree = "<group>"; };
 		67A5A19B1B748A0E0043DE95 /* ReceiptPrinter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptPrinter.m; sourceTree = "<group>"; };
 		67E664C21B6B026700BCBD9A /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
@@ -78,7 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6790C5451B7476BC0018AFA3 /* libCMP20DRIVER.a in Frameworks */,
+				67567DD31B78317C00425DD5 /* libCMP20DRIVER.a in Frameworks */,
 				6790C5371B7466FD0018AFA3 /* libPrinter_160.a in Frameworks */,
 				676361131B6F5B940095071F /* AudioToolbox.framework in Frameworks */,
 				67E664C31B6B026700BCBD9A /* ExternalAccessory.framework in Frameworks */,
@@ -204,7 +204,7 @@
 		AA7F862D6AC44805F09FED6F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6790C5441B7476BC0018AFA3 /* libCMP20DRIVER.a */,
+				67567DD21B78317C00425DD5 /* libCMP20DRIVER.a */,
 				6790C5361B7466FD0018AFA3 /* libPrinter_160.a */,
 				676361121B6F5B940095071F /* AudioToolbox.framework */,
 				67E664C21B6B026700BCBD9A /* ExternalAccessory.framework */,
@@ -462,6 +462,7 @@
 			baseConfigurationReference = 0AE6E57917E052ED17720F4B /* Pods-HandyPOS_Cashier.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = HandyPOS_Cashier/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
@@ -480,6 +481,7 @@
 			baseConfigurationReference = AB9760A341B71E67CB793568 /* Pods-HandyPOS_Cashier.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = HandyPOS_Cashier/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;

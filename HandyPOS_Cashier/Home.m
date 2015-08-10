@@ -35,8 +35,8 @@ NSMutableArray * receipt;
 NSMutableArray * receiptNumbers;
 
 - (void)viewDidLoad {
+    
     count_of_receipt_line       = receipt.count;
-//    [NetworkManager fetchAllDB];
     [super viewDidLoad];
     _receiptNO.inputView = ({
         APNumberPad *numberPad  = [APNumberPad numberPadWithDelegate:self];
@@ -62,7 +62,6 @@ NSMutableArray * receiptNumbers;
     
     /* Sound Setup */
     path=[[NSBundle mainBundle]pathForResource:@"click" ofType:@"wav"];
-    NSLog(@"%@", path);
     url=[NSURL fileURLWithPath:path];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)url,&home_soundID);
     
@@ -165,6 +164,8 @@ NSMutableArray * receiptNumbers;
     payScene.receivable_amount = [self getRawTotalPriceFromReceipt:receipt];
     payScene.receiptNumbers    = receiptNumbers;
     payScene.receipts          = receipt;
+    payScene.employeeName      = _employeeName;
+    payScene.shopName          = _shopName;
     [self presentViewController:payScene animated:YES completion:nil];
 }
 

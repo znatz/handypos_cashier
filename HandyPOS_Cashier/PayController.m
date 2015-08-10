@@ -36,6 +36,7 @@ NSURL    * sound_url;
 SystemSoundID soundID;
 
 - (void)viewDidLoad {
+    NSLog(@"%@, %@", _employeeName, _shopName);
     [super viewDidLoad];
     
     /* Data Setup */
@@ -63,7 +64,15 @@ SystemSoundID soundID;
     if ([self validation]) {
         
         [DBHelper prepareTransactionDatabase];
-        Payment * payment = [[Payment alloc] initWithID:0 price:_receivable_amount payment:currentInput changes:currentChanges time:[Helper getCurrentTime] UUID:[Helper getUUID]];
+        NSLog(@"ShopEMployee : %@, %@", _shopName, _employeeName);
+        Payment * payment = [[Payment alloc] initWithID : 0
+                                                  price : _receivable_amount
+                                                payment : currentInput
+                                                changes : currentChanges
+                                                   time : [Helper getCurrentTime]
+                                                   UUID : [Helper getUUID]
+                                                shopName: _shopName
+                                           employeeName : _employeeName];
         [DBHelper recordPayment:payment withReceiptNumbers:_receiptNumbers];
         
         [ReceiptPrinter preparePrinter:_receipts withPayment:payment];

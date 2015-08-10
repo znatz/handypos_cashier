@@ -15,8 +15,40 @@
 
 #define DB_FILE                 @"Cashier.sqlite"
 #define DB_TRANSACTION_FILE     @"Transaction.sqlite"
+#define DB_MASTER_FILE          @"Master.sqlite"
 
 @implementation DBHelper
+
+/* ------------------------------------------------------------ Handle Employees ----------------------------------------- */
++ (NSMutableArray *) getAllEmployeesByShopID : (int) i {
+    FMDatabase * db     = [self getDBFromFile:DB_MASTER_FILE];
+    NSMutableArray * allEmployees = [[NSMutableArray alloc] init];
+    NSString * query    = [NSString stringWithFormat:@"SELECT * FROM Employees WHERE shop = %d", i];
+    [db open];
+    FMResultSet * result = [db executeQuery:query];
+    while ([result next]) {
+        Employee * e    = [[Employee alloc] initWithID : [result intForColumn:@"id"]
+                                                  name : [result stringForColumn:@"name"]
+                                                  shop : [result intForColumn:@"shop"]];
+        [allEmployees addObject:e];
+    }
+    [db close];
+    return allEmployees;
+}
+
+/* ------------------------------------------------------------ Handle Shops ----------------------------------------- */
++ (NSMutableArray *) getAllShops {
+    FMDatabase * db = [self getDBFromFile:DB_MASTER_FILE];
+    NSMutableArray * allShops = [[NSMutableArray alloc] init];
+    [db open];
+    FMResultSet * result = [db executeQuery:@"SELECT * FROM shops"];
+    while ([result next]) {
+        Shop * s = [[Shop alloc] initWithID:[result intForColumn:@"id"] name:[result stringForColumn:@"Tenpo"]];
+        [allShops addObject:s];
+    }
+    [db close];
+    return allShops;
+}
 
 /* ------------------------------------------------------------ Handle Payment ----------------------------------------- */
 + (void) prepareTransactionDatabase {
@@ -26,16 +58,17 @@
     [db executeStatements:@"CREATE TABLE IF NOT EXISTS transactions (id INTEGER PRIMARY KEY AUTOINCREMENT, receiptNo TEXT, payment_id INTEGER);"];
     [db close];
     [db open];
-    [db executeStatements:@"CREATE TABLE IF NOT EXISTS payments(id INTEGER PRIMARY KEY AUTOINCREMENT, price INTEGER, payment INTEGER, changes INTEGER, time TEXT, uuid TEXT);"];
+    [db executeStatements:@"CREATE TABLE IF NOT EXISTS payments(id INTEGER PRIMARY KEY AUTOINCREMENT, price INTEGER, payment INTEGER, changes INTEGER, time TEXT, uuid TEXT, shopName TEXT, employeeName TEXT);"];
     [db close];
 }
 
 + (void) recordPayment : (Payment *) p withReceiptNumbers : (NSMutableArray *) rns {
     FMDatabase * db = [self getDBFromFile:DB_TRANSACTION_FILE];
     NSString * query;
-    query = [NSString stringWithFormat:@"INSERT INTO payments (price, payment, changes, time, uuid) VALUES (%d, %d, %d, '%@', '%@')", p.price, p.payment, p.changes, p.time, p.UUID];
+    query = [NSString stringWithFormat:@"INSERT INTO payments (price, payment, changes, time, uuid, shopName, employeeName) VALUES (%d, %d, %d, '%@', '%@', '%@', '%@')", p.price, p.payment, p.changes, p.time, p.UUID, p.shopName, p.employeeName];
     [db open];
     [db executeStatements:query];
+    NSLog(@"ERROR %@", [db lastErrorMessage]);
     [db close];
     
     for (NSString * rn in rns) {

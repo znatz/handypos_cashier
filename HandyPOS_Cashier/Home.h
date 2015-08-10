@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <APNumberPad/APNumberPad.h>
 @interface Home : UIViewController
-
-
+@property NSString * shopName;
+@property NSString * employeeName;
 @end
 

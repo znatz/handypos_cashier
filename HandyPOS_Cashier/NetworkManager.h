@@ -11,6 +11,7 @@
 @interface NetworkManager : NSObject
 
 + (void) uploadPaymentRecord ;
++ (void) fetchDBFile : (NSString *)dbfileName;
 + (NSString *) fetchAllDB ;
 
 + (void) uploadFile : (NSString *) dbfileName;

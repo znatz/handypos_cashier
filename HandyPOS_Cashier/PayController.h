@@ -9,7 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface PayController : UIViewController
+
 @property int receivable_amount;
+
 @property NSMutableArray * receiptNumbers;
 @property NSMutableArray * receipts;
+
+@property NSString * shopName;
+@property NSString * employeeName;
 @end

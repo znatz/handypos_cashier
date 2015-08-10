@@ -10,6 +10,8 @@
 #import <FMDatabase.h>
 #import "Payment.h"
 #import "Transaction.h"
+#import "Employee.h"
+#import "Shop.h"
 
 @interface DBHelper : NSObject
 
@@ -22,4 +24,7 @@
 + (NSMutableArray *) getReceiptByTableNo : (NSString *) i ;
 + (NSMutableArray *) getAllReceiptNumberInTable : (NSString *) i ;
 + (BOOL) removeReceiptByReceiptNo : (NSString *) i ;
+
++ (NSMutableArray *) getAllShops ;
++ (NSMutableArray *) getAllEmployeesByShopID : (int) i ;
 @end

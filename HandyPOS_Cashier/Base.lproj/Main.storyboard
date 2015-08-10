@@ -9,7 +9,7 @@
         <!--Setup-->
         <scene sceneID="uf9-GZ-EgX">
             <objects>
-                <viewController id="hZE-8I-aqo" userLabel="Setup" customClass="Setup" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="setup_scene" id="hZE-8I-aqo" userLabel="Setup" customClass="Setup" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1GY-rZ-ppg"/>
                         <viewControllerLayoutGuide type="bottom" id="63j-hF-fMl"/>

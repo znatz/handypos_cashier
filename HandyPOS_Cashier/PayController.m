@@ -7,7 +7,7 @@
 //
 
 #import "PayController.h"
-#import "Home.h"
+#import "Setup.h"
 #import "DBHelper.h"
 #import "Helper.h"
 #import "NetworkManager.h"
@@ -81,8 +81,8 @@ SystemSoundID soundID;
             result = [DBHelper removeReceiptByReceiptNo:receiptNo];
         }
         if (result) {
-            Home * homeScene = [[self storyboard] instantiateViewControllerWithIdentifier:@"home_scene"];
-            [self presentViewController:homeScene animated:YES completion:nil];
+            Setup * setupScene = [self.storyboard instantiateViewControllerWithIdentifier:@"setup_scene"];
+            [self presentViewController:setupScene animated:YES completion:nil];
             [NetworkManager uploadPaymentRecord];
             [DBHelper cleanUPPaymentRecord];
         }
@@ -128,8 +128,8 @@ SystemSoundID soundID;
     
     AudioServicesPlaySystemSound(soundID);
     
-    Home * homeScene = [[self storyboard] instantiateViewControllerWithIdentifier:@"home_scene"];
-    [self presentViewController:homeScene animated:YES completion:nil];
+    Setup * setupScene = [self.storyboard instantiateViewControllerWithIdentifier:@"setup_scene"];
+    [self presentViewController:setupScene animated:YES completion:nil];
 }
 
 

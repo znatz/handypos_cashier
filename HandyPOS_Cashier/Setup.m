@@ -8,7 +8,9 @@
 
 #import "Setup.h"
 #import "NetworkManager.h"
+#import "ReceiptPrinter.h"
 #import "DBHelper.h"
+#import "DefaultSettings.h"
 #import "Home.h"
 #import <FlatUIKit/FlatUIKit.h>
 
@@ -24,22 +26,64 @@ NSMutableArray * allShops;
 NSMutableArray * allEmployees;
 Shop           * defaultShop;
 Employee       * defaultEmployee;
+static BOOL runonce = NO;
+
+
+-(void)setupDefaultEnvironment {
+    if ([ReceiptPrinter testConnection:@"192.168.1.231"]) {
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle : nil
+                                                      message : @"プリンター正常に接続しました"
+                                                     delegate : self
+                                            cancelButtonTitle : @"進む"
+                                            otherButtonTitles : nil, nil];
+        [av show];
+        [DefaultSettings removeAllPrinterPath];
+        [DefaultSettings saveIfNotExistsPrinterPath:@"192.168.1.231"];
+    } else {
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle : @"プリンター接続失敗しました"
+                                                      message : @"IPアドレス再設定してください"
+                                                     delegate : self
+                                            cancelButtonTitle : @"再設定"
+                                            otherButtonTitles : nil, nil];
+        [av show];
+    }
+}
+
+-(BOOL)validatePrinter {
+    if ([ReceiptPrinter testConnection:_receiptIP.text]) {
+        [DefaultSettings removeAllPrinterPath];
+        [DefaultSettings saveIfNotExistsPrinterPath:_receiptIP.text];
+        return YES;
+    } else {
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle : nil
+                                                      message : @"プリンター接続失敗しました。"
+                                                     delegate : self
+                                            cancelButtonTitle : @"再設定"
+                                            otherButtonTitles : nil, nil];
+        [av show];
+        return NO;
+    }
+}
 
 -(IBAction)submit:(id)sender {
     
-    NSUserDefaults * defaultSettings = [NSUserDefaults standardUserDefaults];
-    NSString * printerURL            = @"192.168.1.231";
-    [defaultSettings setObject:printerURL forKey:@"printerURL"];
-    [defaultSettings synchronize];
-    
-    Home * hv           = [self.storyboard instantiateViewControllerWithIdentifier:@"home_scene"];
-    hv.shopName         = defaultShop.name;
-    hv.employeeName     = defaultEmployee.name;
-    [self presentViewController:hv animated:YES completion:nil];
+    // If connection is setup correctly in viewDidLoad, the connection is not closed. Even if the _receiptIP is not empty, the validation will succeed.
+    if([self validatePrinter]) {
+        Home * hv           = [self.storyboard instantiateViewControllerWithIdentifier:@"home_scene"];
+        hv.shopName         = defaultShop.name;
+        hv.employeeName     = defaultEmployee.name;
+        [self presentViewController:hv animated:YES completion:nil];
+    }
 }
 
 - (void)viewDidLoad {
-    [NetworkManager fetchDBFile:@"Master.sqlite"];
+    
+    if (!runonce) {
+        [self setupDefaultEnvironment];
+        [NetworkManager fetchDBFile:@"Master.sqlite"];
+        runonce = YES;
+    }
+    
     allShops            = [DBHelper getAllShops];
     defaultShop         = allShops[0];
     allEmployees        = [DBHelper getAllEmployeesByShopID:defaultShop.shopID];

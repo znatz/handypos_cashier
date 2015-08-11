@@ -10,5 +10,6 @@
 #import "Payment.h"
 
 @interface ReceiptPrinter : NSObject
++ (BOOL) testConnection : (NSString *) u ;
 + (void) preparePrinter : (NSMutableArray *) receipts withPayment : (Payment *) p ;
 @end

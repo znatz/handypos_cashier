@@ -36,7 +36,8 @@ NSURL    * sound_url;
 SystemSoundID soundID;
 
 - (void)viewDidLoad {
-    NSLog(@"%@, %@", _employeeName, _shopName);
+    
+   
     [super viewDidLoad];
     
     /* Data Setup */

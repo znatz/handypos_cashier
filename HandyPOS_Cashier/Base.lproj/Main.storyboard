@@ -99,6 +99,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kCQ-hl-5o4" userLabel="returnToSetup" customClass="FUIButton">
+                                <rect key="frame" x="37" y="210" width="91" height="50"/>
+                                <state key="normal" title="戻る"/>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="ReJ-eM-FXy" userLabel="receiptContents">
                                 <rect key="frame" x="20" y="88" width="565" height="507"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -126,6 +130,7 @@
                     <connections>
                         <outlet property="receiptContents" destination="ReJ-eM-FXy" id="6os-eP-LUN"/>
                         <outlet property="receiptNO" destination="8az-hQ-oZf" id="mB4-hn-uiG"/>
+                        <outlet property="returnToSetupBTN" destination="kCQ-hl-5o4" id="bW6-oZ-t5a"/>
                         <outlet property="tableNO" destination="0m4-Oz-1VR" id="7rP-NZ-bxZ"/>
                         <outlet property="titleLabel" destination="1je-Pt-Can" id="HYQ-VQ-mde"/>
                     </connections>

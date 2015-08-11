@@ -7,6 +7,7 @@
 //
 
 #import "ReceiptPrinter.h"
+#import "DefaultSettings.h"
 #import "CMP20DRIVER.h"
 #import "Receipt.h"
 #import "Payment.h"
@@ -15,13 +16,19 @@
 
 @implementation ReceiptPrinter
 
++(BOOL) testConnection : (NSString *) u {
+    CMP20DRIVER * printer = [[CMP20DRIVER alloc] initWithURL:u];
+    if (printer) {
+        return YES;
+    }
+    return NO;
+}
+
 +(void) preparePrinter : (NSMutableArray *) receipts withPayment : (Payment *) p {
     
-    NSUserDefaults * defaultSettings = [NSUserDefaults standardUserDefaults];
-    NSString * printerURL            = [defaultSettings objectForKey:@"printerURL"];
-    NSLog(@"%@", printerURL);
 //    CMP20DRIVER * printer = [[CMP20DRIVER alloc] initWithURL:@"192.168.1.231"];
-    CMP20DRIVER * printer = [[CMP20DRIVER alloc] initWithURL:printerURL];
+    CMP20DRIVER * printer = [[CMP20DRIVER alloc] initWithURL:[DefaultSettings getPrintPath]];
+    
     
     /* -------------------------------------- Print Header -------------------------------- */
     [printer printHeader];

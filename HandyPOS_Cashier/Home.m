@@ -13,6 +13,7 @@
 #import "Receipt.h"
 #import "NSString+Ruby.h"
 #import "PayController.h"
+#import "Setup.h"
 #import <FlatUIKit/FlatUIKit.h>
 #import <AudioToolbox/AudioToolbox.h>
 
@@ -23,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *receiptNO;
 @property (weak, nonatomic) IBOutlet UITextField *tableNO;
 @property (weak, nonatomic) IBOutlet UITableView *receiptContents;
+@property (weak, nonatomic) IBOutlet FUIButton *returnToSetupBTN;
 @end
 
 @implementation Home
@@ -38,6 +40,16 @@ NSMutableArray * receiptNumbers;
     
     count_of_receipt_line       = receipt.count;
     [super viewDidLoad];
+    
+    _returnToSetupBTN.buttonColor     = [UIColor turquoiseColor];
+    _returnToSetupBTN.shadowColor     = [UIColor greenSeaColor];
+    _returnToSetupBTN.shadowHeight    = 3.0f;
+    _returnToSetupBTN.titleLabel.font = [UIFont boldFlatFontOfSize:19];
+    [_returnToSetupBTN setTitleColor:[UIColor cloudsColor] forState:UIControlStateNormal];
+    [_returnToSetupBTN setTitleColor:[UIColor cloudsColor] forState:UIControlStateHighlighted];
+    [_returnToSetupBTN addTarget:self action:@selector(returnToSetup:) forControlEvents:UIControlEventTouchUpInside];
+    _returnToSetupBTN.hidden          = NO;
+        
     _receiptNO.inputView = ({
         APNumberPad *numberPad  = [APNumberPad numberPadWithDelegate:self];
         [numberPad.leftFunctionButton setTitle:@"検索" forState:UIControlStateNormal];
@@ -69,6 +81,11 @@ NSMutableArray * receiptNumbers;
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (IBAction)returnToSetup:(id)sender {
+    Setup * setupScene = [self.storyboard instantiateViewControllerWithIdentifier:@"setup_scene"];
+    [self presentViewController:setupScene animated:YES completion:nil];
 }
 
 #pragma mark - APNumberPadDelegate
@@ -123,8 +140,9 @@ NSMutableArray * receiptNumbers;
         secondLine      = [secondLine chop];
         _titleLabel.text    = [[firstLine:@"\r\n", nil]:secondLine, nil];
     }
-    _tableNO.hidden    = YES;
-    _receiptNO.hidden  = YES;
+    _tableNO.hidden          = YES;
+    _receiptNO.hidden        = YES;
+    _returnToSetupBTN.hidden = YES;
     [_receiptNO resignFirstResponder];
     [_tableNO resignFirstResponder];
     

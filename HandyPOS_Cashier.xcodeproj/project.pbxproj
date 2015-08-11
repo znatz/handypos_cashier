@@ -10,6 +10,8 @@
 		43A50574EAF22DAAF9848441 /* libPods-HandyPOS_Cashier.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 003BB8F8E758F3C826F4195A /* libPods-HandyPOS_Cashier.a */; };
 		67307FC41B6B13A800B9ED26 /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 67307FC31B6B13A800B9ED26 /* DBHelper.m */; };
 		673482851B6B052C000D3DE5 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 673482841B6B052C000D3DE5 /* NetworkManager.m */; };
+		673FC1001B7965DB00C9FDC8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 673FC0FF1B7965DB00C9FDC8 /* CoreData.framework */; };
+		673FC1071B796BF000C9FDC8 /* DefaultSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 673FC1061B796BF000C9FDC8 /* DefaultSettings.m */; };
 		67567DD31B78317C00425DD5 /* libCMP20DRIVER.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67567DD21B78317C00425DD5 /* libCMP20DRIVER.a */; };
 		676361111B6F22A70095071F /* PayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 676361101B6F22A70095071F /* PayController.m */; };
 		676361131B6F5B940095071F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 676361121B6F5B940095071F /* AudioToolbox.framework */; };
@@ -41,6 +43,10 @@
 		67307FC31B6B13A800B9ED26 /* DBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHelper.m; sourceTree = "<group>"; };
 		673482831B6B052C000D3DE5 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		673482841B6B052C000D3DE5 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
+		673FC0FF1B7965DB00C9FDC8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		673FC1041B796BF000C9FDC8 /* DefaultSettings+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DefaultSettings+CoreDataProperties.h"; sourceTree = "<group>"; };
+		673FC1051B796BF000C9FDC8 /* DefaultSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultSettings.h; sourceTree = "<group>"; };
+		673FC1061B796BF000C9FDC8 /* DefaultSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultSettings.m; sourceTree = "<group>"; };
 		67567DD21B78317C00425DD5 /* libCMP20DRIVER.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCMP20DRIVER.a; path = Library/libCMP20DRIVER.a; sourceTree = "<group>"; };
 		6763610F1B6F22A70095071F /* PayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayController.h; sourceTree = "<group>"; };
 		676361101B6F22A70095071F /* PayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayController.m; sourceTree = "<group>"; };
@@ -87,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				673FC1001B7965DB00C9FDC8 /* CoreData.framework in Frameworks */,
 				67567DD31B78317C00425DD5 /* libCMP20DRIVER.a in Frameworks */,
 				6790C5371B7466FD0018AFA3 /* libPrinter_160.a in Frameworks */,
 				676361131B6F5B940095071F /* AudioToolbox.framework in Frameworks */,
@@ -190,6 +197,9 @@
 		678047EE1B6B34B8001C1A21 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				673FC1041B796BF000C9FDC8 /* DefaultSettings+CoreDataProperties.h */,
+				673FC1051B796BF000C9FDC8 /* DefaultSettings.h */,
+				673FC1061B796BF000C9FDC8 /* DefaultSettings.m */,
 				678047EF1B6B34D6001C1A21 /* Receipt.h */,
 				678047F01B6B34D6001C1A21 /* Receipt.m */,
 				677F4C8A1B705E3000FD39A9 /* Transaction.h */,
@@ -219,6 +229,7 @@
 		AA7F862D6AC44805F09FED6F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				673FC0FF1B7965DB00C9FDC8 /* CoreData.framework */,
 				67567DD21B78317C00425DD5 /* libCMP20DRIVER.a */,
 				6790C5361B7466FD0018AFA3 /* libPrinter_160.a */,
 				676361121B6F5B940095071F /* AudioToolbox.framework */,
@@ -347,6 +358,7 @@
 			files = (
 				67A321EA1B78745400438D82 /* Employee.m in Sources */,
 				676361111B6F22A70095071F /* PayController.m in Sources */,
+				673FC1071B796BF000C9FDC8 /* DefaultSettings.m in Sources */,
 				677370981B6AE99F00E0F020 /* Home.m in Sources */,
 				6773709E1B6AE99F00E0F020 /* HandyPOS_Cashier.xcdatamodeld in Sources */,
 				67A321E41B785D0100438D82 /* Setup.m in Sources */,
